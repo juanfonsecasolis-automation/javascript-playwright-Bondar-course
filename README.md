@@ -2,6 +2,8 @@
 Copyright 2024 Juan M. Fonseca-Solís.
 
 ## Setup
+1. Install "Playwright Test for VSCode".
+2. Install Node.js LTS.
 
 ## Run
 
