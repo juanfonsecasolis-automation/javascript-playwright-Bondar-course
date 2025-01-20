@@ -1,0 +1,25 @@
+{
+  "name": "javascript-playwright",
+  "version": "1.0.0",
+  "description": "Copyright 2024 Juan M. Fonseca-Solís.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanfonsecasolis-automation/javascript-playwright.git"
+  },
+  "author": "Juan M. Fonseca-Solis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanfonsecasolis-automation/javascript-playwright/issues"
+  },
+  "homepage": "https://github.com/juanfonsecasolis-automation/javascript-playwright#readme",
+  "dependencies": {
+        
+  },
+  "devDependencies": {
+
+  }
+}

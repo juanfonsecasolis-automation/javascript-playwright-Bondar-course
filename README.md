@@ -3,9 +3,22 @@ Copyright 2024 Juan M. Fonseca-Solís.
 
 ## Setup
 1. Install "Playwright Test for VSCode".
-2. Install Node.js LTS.
+1. Install Node.js LTS.
+1. Run `npm init`
+
+# Application under test (Angular)
+```
+git clone git@github.com:bondar-artem/pw-practice-app.git
+npm install --force
+npm start
+open http://localhost:4200/
+```
 
 ## Run
+```
+cd lessons
+node lesson1.js
+```
 
 ## Disclaimer
 Maintenability is one important aspect on successful end-to-end automation solutions. It is determined, among other factors, by the programming language, test tool, and test framework selection. Below are some criterias suggested by authors to choose the right programming language [2].
