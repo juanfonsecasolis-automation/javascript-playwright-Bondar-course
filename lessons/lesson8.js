@@ -39,3 +39,4 @@ printAge(5)
 
 import * as helper from '../helper/printHelper.js'
 helper.printAge(5)
+
