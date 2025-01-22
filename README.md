@@ -11,6 +11,7 @@ Copyright 2024 Juan M. Fonseca-Solís.
 ```
 npx playwright test -g "has title" example.spec.ts --project=Chromium --headed
 npx playwright show-report
+npx playwright test --ui
 ```
 
 # Application under test (Angular)
