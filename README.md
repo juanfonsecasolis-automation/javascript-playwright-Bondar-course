@@ -4,7 +4,14 @@ Copyright 2024 Juan M. Fonseca-Solís.
 ## Setup
 1. Install "Playwright Test for VSCode".
 1. Install Node.js LTS.
-1. Run `npm init`
+1. Run as sudo `npx playwright install`
+1. Run `npm init playwright@latest`
+
+## Run
+```
+npx playwright test -g "has title" example.spec.ts --project=Chromium --headed
+npx playwright show-report
+```
 
 # Application under test (Angular)
 ```
@@ -14,10 +21,11 @@ npm start
 open http://localhost:4200/
 ```
 
-## Run
+## Lessons
 ```
 cd lessons
 node lesson1.js
+...
 ```
 
 ## Disclaimer
