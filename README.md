@@ -9,7 +9,7 @@ Copyright 2024 Juan M. Fonseca-Solís.
 
 ## Run
 ```
-npx playwright test -g "has title" example.spec.ts --project=Chromium --headed
+npx playwright test -g "has title" example.spec.ts --project=Chromium --headed --trace on -debug
 npx playwright show-report
 npx playwright test --ui
 ```
