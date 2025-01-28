@@ -26,12 +26,21 @@ test.describe('Forms test suite', () => {
     })
 
     // use 'async' in test block when using 'await' in the code lines
-    test('first asynchronous test', async ({page}) => {
+    test('Using the Grid test', async ({page}) => {
         await page.getByPlaceholder('Jane Doe').fill('John Doe')
-        await page.getByLabel('Email').first().fill('username@domain.com')
-        await page.getByLabel('Password').nth(0).fill('password')   // try to avoid this approach (index can change on implementation)
-        await page.locator("//nb-card").getByText("Option 1").check()
-        await page.locator(gridSubmitButtonLocator).click()
+
+        var gridCard = await page.locator('nb-card', {hasText: "Using the Grid"})
+        await gridCard.getByLabel('Email').fill('username@domain.com')
+        await gridCard.getByLabel('Password').nth(0).fill('password')   // try to avoid this approach (index can change on implementation)
+        await gridCard.getByText("Option 1").check()
+        await gridCard.locator(gridSubmitButtonLocator).click()
+    })
+
+    test('Using the Basic form', async ({page}) => {
+        var basicForm = await page.locator("//nb-card-header[text()='Basic form']").locator('..')
+        await basicForm.getByLabel('Email').fill('username@domain.com')
+        await basicForm.getByLabel('Password').nth(0).fill('password')   // try to avoid this approach (index can change on implementation)
+        await basicForm.getByText("Submit").click()
     })
 
     test.afterEach(async ({page}) => {
