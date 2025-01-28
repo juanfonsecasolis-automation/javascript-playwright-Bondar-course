@@ -9,9 +9,14 @@ Copyright 2024 Juan M. Fonseca-Solís.
 
 ## Run
 ```
-npx playwright test -g "has title" example.spec.ts --project=Chromium --headed --trace on -debug
+npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on
 npx playwright show-report
 npx playwright test --ui
+```
+
+## Debug
+```
+npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on --debug
 ```
 
 # Application under test (Angular)

@@ -3,7 +3,7 @@
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
-import {test} from '@playwright/test'
+import {test, expect} from '@playwright/test'
 
 // this applies to all test suites below
 test.beforeEach(async ({page}) => {
@@ -23,6 +23,10 @@ test.describe('Forms test suite', () => {
     test('first sequential test', ({page}) => {
         // this will fail because the return type Promise is async
         page.locator(gridSubmitButtonLocator).click()
+    })
+
+    test('always failing test', async ({page}) => {
+        await expect(page.getByPlaceholder('Jane Doe').count()).toBeGreaterThanOrEqual(2)
     })
 
     // use 'async' in test block when using 'await' in the code lines
