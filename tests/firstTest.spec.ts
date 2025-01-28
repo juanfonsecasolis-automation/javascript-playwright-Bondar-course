@@ -1,6 +1,6 @@
 /**
  * 2025 Juan Fonseca.
- * Playwright: Web Automation Testing From Zero to Hero course
+ * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
 import {test} from '@playwright/test'
@@ -27,6 +27,10 @@ test.describe('Forms test suite', () => {
 
     // use 'async' in test block when using 'await' in the code lines
     test('first asynchronous test', async ({page}) => {
+        await page.getByPlaceholder('Jane Doe').fill('John Doe')
+        await page.getByLabel('Email').first().fill('username@domain.com')
+        await page.getByLabel('Password').nth(0).fill('password')   // try to avoid this approach (index can change on implementation)
+        await page.locator("//nb-card").getByText("Option 1").check()
         await page.locator(gridSubmitButtonLocator).click()
     })
 
