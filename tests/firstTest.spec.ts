@@ -1,13 +1,12 @@
 /**
- * 2025 Juan Fonseca.
+ * 2025 Juan M. Fonseca-Solís
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  * 
- * Note: Be sure to run the sample app `npm start` on git@github.com:bondar-artem/pw-practice-app.git
- * before executing the tests.
+ * Note: before executing the tests, run the sample app by executing command
+ * `npm start` on code stored at git@github.com:bondar-artem/pw-practice-app.git.
  */
 
 import {test, expect} from '@playwright/test'
-import exp from 'constants'
 
 // this applies to all test suites below
 test.beforeEach(async ({page}) => {
