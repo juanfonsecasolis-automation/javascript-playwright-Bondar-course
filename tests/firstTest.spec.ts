@@ -1,9 +1,13 @@
 /**
  * 2025 Juan Fonseca.
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
+ * 
+ * Note: Be sure to run the sample app `npm start` on git@github.com:bondar-artem/pw-practice-app.git
+ * before executing the tests.
  */
 
 import {test, expect} from '@playwright/test'
+import exp from 'constants'
 
 // this applies to all test suites below
 test.beforeEach(async ({page}) => {
@@ -67,6 +71,25 @@ test.describe('Forms test suite', () => {
         
         const placeholderValue = await emailField.getAttribute("placeholder")
         expect(placeholderValue).toEqual("Email")
+    })
+
+    test('Assertions', async ({page}) => {
+
+        // Type 1: GenericAssertions
+        expect(5).toEqual(5)
+
+        // use await when interacting with locators
+        const basicFormButton = page.locator("nb-card").filter({hasText: "Basic form"}).locator('button')
+        const textContent = await basicFormButton.textContent();
+        expect(textContent).toEqual('Submit')
+
+        // Type 2: LocatorAssertions (automatically searches for the text in the locator, waiting 5s)
+        await expect(basicFormButton).toHaveText("Submit")
+
+        // Type 3: SoftAssertions. Continues next lines even after the assertion failed,
+        // but this is not a good practice.
+        await expect.soft(basicFormButton).toHaveText("Submit5")    // should fail
+        await basicFormButton.click()
     })
 
     test.afterEach(async ({page}) => {
