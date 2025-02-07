@@ -44,6 +44,17 @@ Maintainability is one important aspect of successful end-to-end automation solu
 
 Javascript (JS) satisfies conditions i and iv, but not ii and iii [4, 5]. TypeScript (TS), a super version of Javascript, is compiled (violating i) and is still not fully an OOPL [6, 7]. Python and Ruby are better choices according to the conditions mentioned. The work published in this repository will be focused on investigating automation with JS/TS to obtain a better understanding.
 
+## Findings
+About Playwright, this framework makes automation easier than Selenium, for instance:
+* you have a method to check/uncheck checkboxes (you don't need to know in advance the previous status of the component);
+* you can apply assertions directly to web components (locators);
+* you can find elements by role or text (even find parent locators using "..");
+* learning all the API Playwright uses is challenging, specially the locator attributes, it's design is different from selenium.
+
+About Javascript / Typescript...
+* using keyword "await" all the times you want to use a web componentn is indeed a hassle, same for async and extra {} in the parameters;
+* using JS/TS could make possible use the ReactJS native test libraries.
+
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
 2. Zhimin Zhan. Why JavaScript Is Not a Suitable Language for Real Web Test Automation?. Medium. URL: https://medium.com/@zhiminzhan/why-javascript-is-not-a-suitable-language-for-real-web-test-automation-3a87eb4b0b50 (last consulted on 12/06/24).

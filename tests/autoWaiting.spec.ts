@@ -3,7 +3,6 @@
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
-
 import {test, expect} from '@playwright/test'
 
 // this applies to all test suites below
