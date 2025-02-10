@@ -133,4 +133,19 @@ test.describe('Form Layouts page', () => {
         await expect(tooltipContent).toEqual('This is a tooltip')
     })
 
+    test('web tables', async ({page}) => {
+        await page.getByText('Tables & Data').click()
+        await page.getByText('Smart Table').click()
+
+        // Exercise 1. Get a row locator for any text in that row.
+        const targetRow = page.getByRole('row', {name: "twitter@outlook.com"})  // this works because the email is a text in read-mode
+        await targetRow.locator('.nb-edit').click()
+
+        // Exercise 2. Change the age in the selected row, in this case
+        // we can't search by text as before because the email is a property value.
+        await page.locator('input-editor').getByPlaceholder("Age").clear()  // tag name != class name
+        await page.locator('input-editor').getByPlaceholder("Age").fill("35")
+        await page.locator('.nb-checkmark').click()
+    })
+
 })
