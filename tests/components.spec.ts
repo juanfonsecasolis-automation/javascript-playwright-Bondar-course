@@ -111,4 +111,26 @@ test.describe('Form Layouts page', () => {
         }
     })
 
+    test('tooltips', async ({page}) => {
+        await page.getByText('Modal & Overlays').click()
+        await page.getByText('Tooltip').click()
+        
+        const tooltipCard = page.locator('nb-card', {hasText: "Tooltip Placements"});
+        await tooltipCard.getByRole('button', {name: "Top"}).hover()
+        
+        //page.getByRole('tooltip')   // only works if you have a role tooltip created, not this case
+        
+        /**
+         * Hint to get the locator for the tooltip:
+         * a. Open the Developer Console.
+         * b. Open the Sources tab.
+         * c. Hover over the button to display the tooltip.
+         * d. Press F8 to pause the execution (the tooltip box is frozen).
+         * e. Inspect the element as you would do with other components.
+         * f. Click the Resume button to dismiss.
+         */
+        const tooltipContent = await page.locator('nb-tooltip').textContent()
+        await expect(tooltipContent).toEqual('This is a tooltip')
+    })
+
 })

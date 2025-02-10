@@ -55,6 +55,11 @@ About Javascript / Typescript...
 * using keyword "await" all the times you want to use a web componentn is indeed a hassle, same for async and extra {} in the parameters;
 * using JS/TS could make possible use the ReactJS native test libraries.
 
+## Page Object Model (POM)
+"Is a design pattern used in test automation to organize source code, improve maintenability, and reusability of the code. Every page of the application has its own class with methods responsible for operations on this page." - A. Bondar
+
+POM is based on the _Don't repeat yourself_ (DRY) and _Keep it simple stupid_ (KISS) principles; and it is a good companion for _descriptive naming_, which is naming members in a meaninful way, and _avoid tiny methods_, which is creating methods for code blocks instead of single statements, which overcomplicates the development.
+
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
 2. Zhimin Zhan. Why JavaScript Is Not a Suitable Language for Real Web Test Automation?. Medium. URL: https://medium.com/@zhiminzhan/why-javascript-is-not-a-suitable-language-for-real-web-test-automation-3a87eb4b0b50 (last consulted on 12/06/24).
