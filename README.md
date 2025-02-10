@@ -50,6 +50,7 @@ About Playwright, this framework makes automation easier than Selenium, for inst
 * you can apply assertions directly to web components (locators);
 * you can find elements by role or text (even find parent locators using "..");
 * learning all the API Playwright uses is challenging, specially the locator attributes, it's design is different from selenium.
+* to avoid using XPath locators all the time, which are prompt to invalidation due to layout changes, Playwright offers using the GetByRole method.
 
 About Javascript / Typescript...
 * using keyword "await" all the times you want to use a web componentn is indeed a hassle, same for async and extra {} in the parameters;

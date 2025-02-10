@@ -133,7 +133,7 @@ test.describe('Form Layouts page', () => {
         await expect(tooltipContent).toEqual('This is a tooltip')
     })
 
-    test('web tables', async ({page}) => {
+    test('web tables 1', async ({page}) => {
         await page.getByText('Tables & Data').click()
         await page.getByText('Smart Table').click()
 
@@ -146,6 +146,22 @@ test.describe('Form Layouts page', () => {
         await page.locator('input-editor').getByPlaceholder("Age").clear()  // tag name != class name
         await page.locator('input-editor').getByPlaceholder("Age").fill("35")
         await page.locator('.nb-checkmark').click()
+    })
+
+    test('web tables 2', async ({page}) => {
+        await page.getByText('Tables & Data').click()
+        await page.getByText('Smart Table').click()
+
+        // Exercise 3. Select a row searching a value in a specific column
+        await page.locator('.ng2-smart-page-item').getByText('2').click()
+        const targetRowById = page
+            .getByRole('row', {name: '11'})
+            .filter({has: page.locator('td').nth(1).getByText('11')})
+        await targetRowById.locator('.nb-edit').click()
+        await page.locator('input-editor').getByPlaceholder("E-mail").clear()
+        await page.locator('input-editor').getByPlaceholder("E-mail").fill("test@test.com")
+        await page.locator('.nb-checkmark').click()
+        await expect(targetRowById.locator('td').nth(5)).toHaveText("test@test.com")
     })
 
 })
