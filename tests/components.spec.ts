@@ -191,4 +191,23 @@ test.describe('Form Layouts page', () => {
             }
         }
     })
+
+    test('Datepickers', async ({page}) => {
+        await page.getByText('Forms').click()
+        await page.getByText('Datepicker').click()
+
+        const calendarInputField = page.getByPlaceholder('Form Picker')
+        await calendarInputField.click()
+
+        let date = new Date()
+        const expectedDay = date.getDate().toString()
+        await page
+            .locator('//*[@class="day-cell ng-star-inserted"] | //*[@class="today day-cell ng-star-inserted"]')
+            .getByText(expectedDay, {exact: true}).click()
+        
+        const expectedMonthShort = date.toLocaleString('En-US', {month: 'short'})
+        const expectedYear = date.getFullYear()
+        const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}` // string interpolation
+        await expect(calendarInputField).toHaveValue(expectedDate)
+    })
 })
