@@ -193,20 +193,38 @@ test.describe('Form Layouts page', () => {
     })
 
     test('Datepickers', async ({page}) => {
+
+        // get into the page
         await page.getByText('Forms').click()
         await page.getByText('Datepicker').click()
 
+        // compute an expected date
+        let date = new Date()
+        date.setDate(date.getDate() + 100)
+        const expectedDay = date.getDate().toString()
+
+        // open the datepicker compnent
         const calendarInputField = page.getByPlaceholder('Form Picker')
         await calendarInputField.click()
+        const expectedYear = date.getFullYear()
+        const expectedMonthShort = date.toLocaleString('En-US', {month: 'short'})
+        const expectedMonthLong = date.toLocaleString('En-US', {month: 'long'})
+        const expectedMonthAndYear = ` ${expectedMonthLong} ${expectedYear}`
 
-        let date = new Date()
-        const expectedDay = date.getDate().toString()
+        // change to the expected month using pagination
+        let calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent()
+        while(calendarMonthAndYear!=null && !calendarMonthAndYear.includes(expectedMonthAndYear))
+        {
+            await page.locator('nb-calendar-pageable-navigation').locator('//*[@data-name="chevron-right"]').click()
+            calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent()
+        }
+
+        // click the selected date
         await page
             .locator('//*[@class="day-cell ng-star-inserted"] | //*[@class="today day-cell ng-star-inserted"]')
-            .getByText(expectedDay, {exact: true}).click()
-        
-        const expectedMonthShort = date.toLocaleString('En-US', {month: 'short'})
-        const expectedYear = date.getFullYear()
+            .getByText(expectedDay, {exact: true}).click()        
+
+        // verify the selected date is displayed after the datepicker component is closed
         const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}` // string interpolation
         await expect(calendarInputField).toHaveValue(expectedDate)
     })
