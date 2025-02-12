@@ -200,7 +200,7 @@ test.describe('Form Layouts page', () => {
 
         // compute an expected date
         let date = new Date()
-        date.setDate(date.getDate() + 100)
+        date.setDate(date.getDate() + 100)  // date must be in the future as we don't select prior months yet (see below)
         const expectedDay = date.getDate().toString()
 
         // open the datepicker compnent
