@@ -133,7 +133,7 @@ test.describe('Form Layouts page', () => {
         await expect(tooltipContent).toEqual('This is a tooltip')
     })
 
-    test('web tables 1', async ({page}) => {
+    test('web tables exercises 1 and 2', async ({page}) => {
         await page.getByText('Tables & Data').click()
         await page.getByText('Smart Table').click()
 
@@ -148,7 +148,7 @@ test.describe('Form Layouts page', () => {
         await page.locator('.nb-checkmark').click()
     })
 
-    test('web tables 2', async ({page}) => {
+    test('web tables exercise 3', async ({page}) => {
         await page.getByText('Tables & Data').click()
         await page.getByText('Smart Table').click()
 
@@ -164,4 +164,31 @@ test.describe('Form Layouts page', () => {
         await expect(targetRowById.locator('td').nth(5)).toHaveText("test@test.com")
     })
 
+    test('web tables exercise 4', async ({page}) => {
+        await page.getByText('Tables & Data').click()
+        await page.getByText('Smart Table').click()
+
+        // Exercise 4. Filter values in the table
+        const ageTestData = {
+            '28': '28', 
+            '30': '30', 
+            '48': '48', 
+            '200': ' No data found '
+        } 
+
+        for(let age of Object.keys(ageTestData))
+        {
+            await page.locator('input-filter').getByPlaceholder("Age").clear()
+            await page.locator('input-filter').getByPlaceholder("Age").fill(age)
+            await page.waitForTimeout(500)
+            
+            // check the value of the filtered rows
+            const ageRows = page.locator('tbody tr')
+            for(let row of await ageRows.all())
+            {
+                const cellValue = await row.locator('td').last().textContent()
+                expect(cellValue).toEqual(ageTestData[age])
+            }
+        }
+    })
 })
