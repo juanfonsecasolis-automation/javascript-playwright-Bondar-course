@@ -229,3 +229,40 @@ test.describe('Form Layouts page', () => {
         await expect(calendarInputField).toHaveValue(expectedDate)
     })
 })
+
+test.describe('Sliders', () => {
+
+    test('update attribute', async ({page}) => {
+        const tempGauge = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger circle')
+        await tempGauge.evaluate(node => {  // evaluate a JS expression
+            node.setAttribute('cx', '232.63')
+            node.setAttribute('cy', '232.63')
+        })  
+        tempGauge.click()   // click to trigger an event and let the page update the slider
+    })
+
+    test('sliders mouse movement', async ({page}) => {
+        const tempBox = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger')
+        await tempBox.scrollIntoViewIfNeeded()  // make sure the component is displayed in the page
+
+        /**
+         * When calling the "boundingBox" method Playwright creates a coordinate system 
+         * for navigating the area of the component. The upper-left corner is coordinate (0, 0)
+         * the horizontal axis is x and the vertical axis is y.
+         * */
+        const box = await tempBox.boundingBox()
+        if(null != box)
+        {
+            // shift (0, 0) to the box center
+            const x = box.x + box.width/2 
+            const y = box.y + box.height/2
+            await page.mouse.move(x, y) 
+            await page.mouse.down() // simulates mouse click
+            await page.mouse.move(x+100, y)
+            await page.mouse.move(x+100, y+100)
+            await page.mouse.up()   // releases mouse click
+            await expect(tempBox).toContainText('30')
+        }
+    })
+
+})
