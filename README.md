@@ -34,7 +34,7 @@ node lesson1.js
 ...
 ```
 
-## Disclaimer
+## Problem to investigate
 Maintainability is one important aspect of successful end-to-end automation solutions. It is determined, among other factors, by the programming language, test tool, and test framework selection. Below are some criteria suggested by authors to choose the right programming language [2].
 
 1. **Scripting (interpreted) language.** Scripting languages are decoupled from the system architecture, meaning they can provide high-level instructions to achieve the same functionality as other languages by writing less lines of code [3, 9]. Fewer lines of code facilitate maintainability and readability. Also, test automation is enterprise software, meaning that it doesn't have to be implemented in the same language as the main application [2, 8].
@@ -45,7 +45,7 @@ Maintainability is one important aspect of successful end-to-end automation solu
 According to Zhimin Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), a super version of Javascript, which violates i (TS is compiled) and is still not fully an OOPL [4, 5, 6, 7].
 
 ## Objective
-The objective of this repository is to automate using JS/TS with Playwright and determine if it is still a suitable combination.
+The objective of this repository is to put hands on automation using JS/TS with Playwright and determine if it is still a suitable combination.
 
 ## Conclusions
 
