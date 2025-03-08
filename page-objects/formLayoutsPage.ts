@@ -4,13 +4,12 @@
  */
 
 import {Locator, Page} from '@playwright/test'
+import { HelperBase } from './helperBase';
 
-export class FormLayoutsPage 
+export class FormLayoutsPage extends HelperBase
 {
-    readonly page: Page
-
     constructor(page: Page){
-        this.page = page
+        super(page)
     }
 
     async submitUsingTheGridFormWithCredentialsAndSelectOption(

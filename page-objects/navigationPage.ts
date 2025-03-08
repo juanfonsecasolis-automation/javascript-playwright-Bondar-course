@@ -3,11 +3,11 @@
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
-import {Locator, Page} from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
+import { HelperBase } from './helperBase'
 
-export class NavigationPage 
+export class NavigationPage extends HelperBase
 {
-    readonly page: Page
     readonly formLayoutMenuItem: Locator
     readonly datePickerMenuItem: Locator
     readonly smartTableMenuItem: Locator
@@ -15,7 +15,7 @@ export class NavigationPage
     readonly tooltipMenuItem: Locator
 
     constructor(page: Page){
-        this.page = page
+        super(page)
         this.formLayoutMenuItem = page.getByText('Form Layouts')
         this.datePickerMenuItem = page.getByText('Datepicker')
         this.smartTableMenuItem = page.getByText('Smart Table')
@@ -27,6 +27,7 @@ export class NavigationPage
     {
         await this.selectGroupMenuItem("Forms")
         await this.formLayoutMenuItem.click()
+        await this.waitForNumberOfSeconds(2)
     }
 
     async datepickerPage()

@@ -42,19 +42,22 @@ Maintainability is one important aspect of successful end-to-end automation solu
 3. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that facilitates test maintainability by separating tests from pages. The layer that interacts with the system under test. For instance: web-page, mobile devices, and desktop [2].
 4. **Language is officially supported by the test tool.** Languages that are not supported by the company behind the test tool (for instance, Selenium WebDriver or Playwright) require hacks to work properly [2].
 
-Javascript (JS) satisfies conditions i and iv, but not ii and iii [4, 5]. TypeScript (TS), a super version of Javascript, is compiled (violating i) and is still not fully an OOPL [6, 7]. Python and Ruby are better choices according to the conditions mentioned. The work published in this repository will be focused on investigating automation with JS/TS to obtain a better understanding.
+According to Zhimin Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), a super version of Javascript, which violates i (TS is compiled) and is still not fully an OOPL [4, 5, 6, 7].
 
-## Findings
-About Playwright, this framework makes automation easier than Selenium, for instance:
-* you have a method to check/uncheck checkboxes (you don't need to know in advance the previous status of the component);
-* you can apply assertions directly to web components (locators);
-* you can find elements by role or text (even find parent locators using "..");
-* learning all the API Playwright uses is challenging, specially the locator attributes, it's design is different from selenium.
-* to avoid using XPath locators all the time, which are prompt to invalidation due to layout changes, Playwright offers using the GetByRole method.
+## Objective
+The objective of this repository is to automate using JS/TS with Playwright and determine if it is still a suitable combination.
 
-About Javascript / Typescript...
-* using keyword "await" all the times you want to use a web componentn is indeed a hassle, same for async and extra {} in the parameters;
-* using JS/TS could make possible use the ReactJS native test libraries.
+## Conclusions
+
+### Playwright
+The syntax is a bit different than Selenium, specially if convined with JS/TS (where parameters are sent as dictionaries). Overall, this framework makes automation easier by creating an extra layer of abstraction to interact with web components, here are some examples:
+* you have a method to check/uncheck checkboxes and you don't need to know in advance the previous status of the component,
+* you have methods to apply assertions directly to locators instead of web component properties,
+* you can find elements by a generic role using the GetByRole method (e.g. button, label) instead of using XPath,
+* you can navigate backwards in locators using "..".
+
+### Javascript / Typescript...
+Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication.
 
 ## Page Object Model (POM)
 "Is a design pattern used in test automation to organize source code, improve maintenability, and reusability of the code. Every page of the application has its own class with methods responsible for operations on this page." - A. Bondar
