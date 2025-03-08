@@ -34,7 +34,14 @@ node lesson1.js
 ...
 ```
 
-## Investigation problem
+## Theory
+
+### Page Object Model (POM)
+"Is a design pattern used in test automation to organize source code, improve maintenability, and reusability of the code. Every page of the application has its own class with methods responsible for operations on this page." - A. Bondar
+
+POM is based on the _Don't repeat yourself_ (DRY) and _Keep it simple stupid_ (KISS) principles; and it is a good companion for _descriptive naming_, which is naming members in a meaninful way, and _avoid tiny methods_, which is creating methods for code blocks instead of single statements, which overcomplicates the development.
+
+### Automation maintenability
 Maintainability is one important aspect of successful end-to-end automation solutions. It is determined, among other factors, by the programming language, test tool, and test framework selection. Below are some criteria suggested by authors to choose the right programming language [2].
 
 1. **Scripting (interpreted) language.** Scripting languages are decoupled from the system architecture, meaning they can provide high-level instructions to achieve the same functionality as other languages by writing less lines of code [3, 9]. Fewer lines of code facilitate maintainability and readability. Also, test automation is enterprise software, meaning that it doesn't have to be implemented in the same language as the main application [2, 8].
@@ -42,13 +49,14 @@ Maintainability is one important aspect of successful end-to-end automation solu
 3. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that facilitates test maintainability by separating tests from pages. The layer that interacts with the system under test. For instance: web-page, mobile devices, and desktop [2].
 4. **Language is officially supported by the test tool.** Languages that are not supported by the company behind the test tool (for instance, Selenium WebDriver or Playwright) require hacks to work properly [2].
 
+## Investigation problem
 According to Zhimin Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), a super version of Javascript, which violates i (TS is compiled) and is still not fully an OOPL [4, 5, 6, 7].
 
 ## Objective
 The objective of this repository is to put hands on automation using JS/TS with Playwright and determine if it is still a suitable combination.
 
 ## Method
-The method is taking the course of Artem Bondar "Playwright: Web Automation Testing From Zero to Hero" and solve the exercises proposed.
+The method followed was taking the course of Artem Bondar "Playwright: Web Automation Testing From Zero to Hero" and solve the exercises proposed.
 
 ## Conclusions
 
@@ -61,11 +69,6 @@ The syntax is a bit different than Selenium, specially if convined with JS/TS (w
 
 ### Javascript / Typescript...
 Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication.
-
-## Page Object Model (POM)
-"Is a design pattern used in test automation to organize source code, improve maintenability, and reusability of the code. Every page of the application has its own class with methods responsible for operations on this page." - A. Bondar
-
-POM is based on the _Don't repeat yourself_ (DRY) and _Keep it simple stupid_ (KISS) principles; and it is a good companion for _descriptive naming_, which is naming members in a meaninful way, and _avoid tiny methods_, which is creating methods for code blocks instead of single statements, which overcomplicates the development.
 
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
