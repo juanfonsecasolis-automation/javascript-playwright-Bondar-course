@@ -4,34 +4,30 @@
  */
 
 import { test, expect } from '@playwright/test'
-import { assert } from 'console'
-import { NavigationPage } from '../page-objects/navigationPage'
-import { FormLayoutsPage } from '../page-objects/formLayoutsPage'
-import { DatepickerPage } from '../page-objects/datepickerPage'
+import { PageManager } from '../page-objects/pageManager'
 
 test.beforeEach(async ({page}) => {
     await page.goto('http://localhost:4200/')
 })
 
 test('navigate to form page', async ({page}) => {
-    const navigateTo = new NavigationPage(page);
-    await navigateTo.formLayoutsPage();
-    await navigateTo.datepickerPage();
-    await navigateTo.smartTablePage();
-    await navigateTo.toastrPage();
-    await navigateTo.tooltipPage();
+    const pm = new PageManager(page)
+    await pm.navigateTo().formLayoutsPage();
+    await pm.navigateTo().datepickerPage();
+    await pm.navigateTo().smartTablePage();
+    await pm.navigateTo().toastrPage();
+    await pm.navigateTo().tooltipPage();
 })
 
 test('parameterized methods', async ({page}) => {
-    const navigateTo = new NavigationPage(page)
-    const onFormLayoutPage = new FormLayoutsPage(page)
-    await navigateTo.formLayoutsPage()
-    await onFormLayoutPage.submitUsingTheGridFormWithCredentialsAndSelectOption(
+    const pm = new PageManager(page)
+    await pm.navigateTo().formLayoutsPage()
+    await pm.onFormLayoutPage().submitUsingTheGridFormWithCredentialsAndSelectOption(
         'test@test.com',
         'Welcome1',
         'Option 2'
     )
-    await onFormLayoutPage.submitInlineFormWithEmailEmailAndCheckbox(
+    await pm.onFormLayoutPage().submitInlineFormWithEmailEmailAndCheckbox(
         'John Smith',
         'john@test.com',
         true
@@ -50,10 +46,9 @@ test('parameterized datepicker', async ({page}) => {
     const calendarInputField = page.getByPlaceholder('Form Picker')
 
     // act
-    const navigateTo = new NavigationPage(page)
-    const onDatePickerPage = new DatepickerPage(page)
-    await navigateTo.datepickerPage()
-    await onDatePickerPage.selectCommonDatePickerDateFromToday(numberOfDaysFromToday)
+    const pm = new PageManager(page)
+    await pm.navigateTo().datepickerPage()
+    await pm.onDatePickerPage().selectCommonDatePickerDateFromToday(numberOfDaysFromToday)
 
     // assert, verify the selected date is displayed after the datepicker component is closed
     const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}` // string interpolation
@@ -75,10 +70,9 @@ test('parameterized datepicker range', async ({page}) => {
     const calendarInputField = page.getByPlaceholder('Form Picker')
 
     // act
-    const navigateTo = new NavigationPage(page)
-    const onDatePickerPage = new DatepickerPage(page)
-    await navigateTo.datepickerPage()
-    await onDatePickerPage.selectDatePickerWithRangeFromToday(
+    const pm = new PageManager(page)
+    await pm.navigateTo().datepickerPage()
+    await pm.onDatePickerPage().selectDatePickerWithRangeFromToday(
         numberOfDaysFromToday, numberOfDaysFromToday+1)
 
     // assert, verify the selected date is displayed after the datepicker component is closed
