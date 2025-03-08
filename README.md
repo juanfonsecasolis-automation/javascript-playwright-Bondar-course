@@ -50,7 +50,7 @@ The objective of this repository is to automate using JS/TS with Playwright and 
 ## Conclusions
 
 ### Playwright
-The syntax is a bit different than Selenium, specially if convined with JS/TS (where parameters are sent as dictionaries). Overall, this framework makes automation easier by creating an extra layer of abstraction to interact with web components, here are some examples:
+The syntax is a bit different than Selenium, specially if convined with JS/TS (where parameters are sent as dictionaries). Overall, this framework is fast, and makes automation easier by creating an extra layer of abstraction to interact with web components, here are some examples:
 * you have a method to check/uncheck checkboxes and you don't need to know in advance the previous status of the component,
 * you have methods to apply assertions directly to locators instead of web component properties,
 * you can find elements by a generic role using the GetByRole method (e.g. button, label) instead of using XPath,
