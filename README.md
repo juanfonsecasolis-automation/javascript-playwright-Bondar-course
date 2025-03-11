@@ -3,6 +3,8 @@ Copyright 2024-2025 Juan M. Fonseca-Solís.
 
 [![Playwright Tests](https://github.com/juanfonsecasolis-automation/javascript-playwright/actions/workflows/playwright.yml/badge.svg)](https://github.com/juanfonsecasolis-automation/javascript-playwright/actions/workflows/playwright.yml)
 
+Solution for exercises of the course "Playwright: Web Automation Testing From Zero to Hero." of Artem Bondar [1].
+
 ## Setup
 1. Install "Playwright Test for VSCode".
 1. Install Node.js LTS.
