@@ -3,43 +3,46 @@
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
-import { test, expect } from '@playwright/test'; // external import
-//import tags from '../test-data/tags.json' with { type: "json" }; // local import
+import { test, expect, request } from '@playwright/test'; // external import
 
 test.beforeEach(async ({page}) => {
-
-    // configure the mock for tags
-    await page.route('*/**/api/tags', async route => {
-        
-        const tags = { 
-            "tags": [
-                "automation",
-                "playwright"
-            ]
-        }
-
-        await route.fulfill({
-            body: JSON.stringify(tags)
-        }) 
-    })
-
-    // configure the mock for tags
-    await page.route('*/**/api/articles*', async route => {
-        const response = await route.fetch() // complete the API call and return the response
-        const responseBody = await response.json()
-        responseBody['articles'][0].title = 'This is a test title.'
-        responseBody['articles'][0].description = 'This is a test description.'
-        await route.fulfill({
-            body: JSON.stringify(responseBody)
-        }) 
-    })
-
-    // navigate to the main website
     await page.goto('https://conduit.bondaracademy.com/')
+    await page.getByText('Sign in').click()
+    await page.getByRole('textbox', {name:"Email"}).fill("juantests@test.com")
+    await page.getByRole('textbox', {name:"Password"}).fill("TestingSince2013!")
+    await page.getByRole('button', {name:"Sign in"}).click()
 })
 
-test('has title', async ({page}) => {
-    await expect(page.locator('.navbar-brand')).toHaveText('conduit')
-    await expect(page.locator('app-article-list h1').first()).toContainText('This is a test title.')
-    await expect(page.locator('app-article-list p').first()).toContainText('This is a test description.')
+test('create and delete an article', async ({page, request}) => {
+
+    // log in
+    const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
+        data: {
+            "user": {"email": "juantests@test.com", "password": "TestingSince2013!"}
+        }
+    })
+    const responseBody = await response.json()
+    const accessToken = responseBody.user.token
+
+    // create the article
+    const articleTitle = "Brand new article"
+    const articleResponse = await request.post('https://conduit-api.bondaracademy.com/api/articles/', {
+        data: {
+            "article":{
+                "title": articleTitle,
+                "description":"Article created from a Playwright script.",
+                "body":"This is a description.",
+                "tagList":["Playwright", "Test"]}
+        },
+        headers: {
+            Authorization: `Token ${accessToken}`
+        }
+    })
+    expect(articleResponse.status()).toEqual(201)
+
+    // delete the created article (not sure why Artem didn't use the delete POST request...)
+    await page.getByText('Global Feed').click()
+    await page.getByText(articleTitle).click()
+    await page.getByRole('button', {name:"Delete Article"}).first().click()
+    await expect(page.locator('app-article-list h1').first()).not.toContainText(articleTitle)
 })
