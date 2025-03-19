@@ -7,7 +7,7 @@ Solution for exercises of the course "Playwright: Web Automation Testing From Ze
 
 ## Setup
 1. Install "Playwright Test for VSCode".
-1. Install Node.js LTS.
+1. Install Node.js LTS (if installed, version can be known typing `node -v`).
 1. Run as sudo `npx playwright install`
 1. Run `npm init playwright@latest`
 
@@ -18,10 +18,14 @@ npx playwright show-report
 npx playwright test --ui
 ```
 
-## Debug
+## Debugging
 ```
 npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on --debug
 ```
+
+Another way to debug is to generate "traces", a bundle of information for debugging containing
+images ordered in sequential order and network information. To enable traces we modify the property `use.trace` in file playwright.config.ts by setting `trace: 'on-first-retry'` to 
+`trace: 'on'`. The traces are attached to the botton of each failed test case on the Playwright report.
 
 # Application under test (Angular)
 ```
@@ -31,7 +35,7 @@ npm start
 open http://localhost:4200/
 ```
 
-## Lessons
+## Javascript review lessons
 ```
 cd lessons
 node lesson1.js
