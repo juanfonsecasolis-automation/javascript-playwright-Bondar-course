@@ -16,7 +16,7 @@ setup('authentication', async ({request}) => {
     const require = createRequire(import.meta.url)
     const user = require('../.auth/user.json')
 
-    // log in using the API
+    // log in using the API and save the token in the .auth/user.json file
     const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
         data: {
             "user": {"email": "juantests@test.com", "password": "~~!asdf@#$1321%^&*(~"}
@@ -26,8 +26,14 @@ setup('authentication', async ({request}) => {
     const accessToken = responseBody.user.token
     user.origins[0].localStorage[0].value = accessToken
     fs.writeFileSync(authFile, JSON.stringify(user))
-    process.env['ACCESS_TOKEN'] = accessToken   // also applied change to global 'use' in playwright.config.ts so all API calls include this token in headers
 
+    // in the above block the token is stored in the .auth/user.json file above, but the token
+    // is actually used by the test until playwright sets the property use.extraHTTPHeaders 
+    // (on playwright.config.ts file) to an authorization header that uses the environment 
+    // variable below; that header is injected to all API requests.
+    process.env['ACCESS_TOKEN'] = accessToken   
+
+    // Here is another method suggested by Artam:
     // Save authentication state and share it across tests.
     // This refactor required to modify playwright.config.ts to add a new project,
     // and modify the existent browser's projects in that same file.
