@@ -17,9 +17,12 @@ setup('authentication', async ({request}) => {
     const user = require('../.auth/user.json')
 
     // log in using the API and save the token in the .auth/user.json file
+    const email = process.env.CONDUIT_EMAIL
+    const password = process.env.CONDUIT_PASSWORD
+    
     const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
         data: {
-            "user": {"email": "juantests@test.com", "password": "~~!asdf@#$1321%^&*(~"}
+            "user": {"email": email, "password": password}
         }
     })
     const responseBody = await response.json()
