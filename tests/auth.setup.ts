@@ -3,7 +3,7 @@
  * Playwright: Web Automation Testing From Zero to Hero course by Artem Bondar.
  */
 
-import { test as setup } from '@playwright/test';
+import { expect, test as setup } from '@playwright/test';
 import fs from 'fs'
 import { createRequire } from 'node:module'
 
@@ -22,10 +22,15 @@ setup('authentication', async ({request}) => {
     
     const response = await request.post('https://conduit-api.bondaracademy.com/api/users/login', {
         data: {
-            "user": {"email": email, "password": password}
+            "user": {"email": email, "password": "AbC1359!!!"}
         }
     })
     const responseBody = await response.json()
+    console.log('--- Debugging auth API ---')
+    console.log(email)
+    console.log(password)
+    await expect(response.status()).toBe(200);
+
     const accessToken = responseBody.user.token
     user.origins[0].localStorage[0].value = accessToken
     fs.writeFileSync(authFile, JSON.stringify(user))
