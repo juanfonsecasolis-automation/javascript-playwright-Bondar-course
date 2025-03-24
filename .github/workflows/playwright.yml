@@ -24,6 +24,9 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      env:
+        CONDUIT_EMAIL: ${{ secrets.CONDUIT_EMAIL }}
+        CONDUIT_PASSWORD: ${{ secrets.CONDUIT_PASSWORD }}
       run: npx playwright test workingWithApis.spec.ts --project=Chromium
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
