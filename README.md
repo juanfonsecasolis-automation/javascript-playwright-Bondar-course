@@ -18,6 +18,13 @@ npx playwright show-report
 npx playwright test --ui
 ```
 
+One can define custom commands on the package.json file and run them using `npm run <customCommand>`, for instance:
+```
+"scripts": {
+    "pageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=Chromium"
+}
+```
+
 ## Debugging
 ```
 npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on --debug

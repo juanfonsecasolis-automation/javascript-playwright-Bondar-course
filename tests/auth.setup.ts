@@ -26,9 +26,6 @@ setup('authentication', async ({request}) => {
         }
     })
     const responseBody = await response.json()
-    console.log('--- Debugging auth API ---')
-    console.log(email)
-    console.log(password)
     await expect(response.status()).toBe(200);
 
     const accessToken = responseBody.user.token

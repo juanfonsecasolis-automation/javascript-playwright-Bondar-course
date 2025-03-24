@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Copyright 2024 Juan M. Fonseca-Solís.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "pageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=Chromium",
+    "pageObjects-firefox": "npx playwright test usePageObjects.spec.ts --project=Firefox",
+    "pageObjects-all-sequentially": "npx run pageObjects-chrome && npm run pageObjects-firefox",
+    "pageObjects-all-parallelly": "npx run pageObjects-chrome & npm run pageObjects-firefox"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/juanfonsecasolis-automation/javascript-playwright.git"
