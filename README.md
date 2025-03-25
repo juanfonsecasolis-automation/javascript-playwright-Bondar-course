@@ -57,6 +57,23 @@ test.describe('Form Layouts page', () => {
 })
 ```
 
+## Paralelism
+Worker means a new instance of the web browser, and by default, Playwright runs spec files in parallel (one new worker per spec file). At playwright.config.ts file, `fullyParallel: true` determines if tests can be run in parallel inside each spec file (otherwise they run sequentially), and `workers: process.env.CI ? 1 : undefined` determines the number of spec files that run in parallel (apparently, no more than five, why?). One can order the number of execution of spec files by adding a prefix (e.g. 001-*). One can also control if a single spec file can run its tests in parallel:
+
+```
+import { test, expect } from '@playwright/test'
+
+test.describe.configure({mode: 'parallel'})
+```
+
+It is not a good practice to make tests execute in certain order, but that can be achieved by adding `test.describe.configure({mode: 'serial'})` to the test suite.
+
+## Skip test cases
+```
+test.skip('test1', async({page}), testInfo => {
+    ...
+```
+
 # Application under test (Angular)
 ```
 git clone git@github.com:bondar-artem/pw-practice-app.git
@@ -120,4 +137,4 @@ Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS
 6. Zhimin Zhan. Why Ruby is the Best Scripting Language for End-to-End Test Automation? Medium. URL: https://zhiminzhan.medium.com/why-ruby-is-the-best-scripting-language-for-end-to-end-test-automation-d1b014d8cb8c (last consulted on 12/06/24)
 7. Pragmatic Maciej. No, TypeScript is not OOP version of JavaScript. Dev, 2020. URL: https://dev.to/macsikora/no-typescript-is-not-oop-version-of-javascript-3ed4 (consulted on 12/06/). 
 8. Matthew Finio, Amanda Downie. What are enterprise applications? IBM, 8 May 2024. URL: https://www.ibm.com/topics/enterprise-applications (last consulted on 12/16/24).
-9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24). 
+9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24).

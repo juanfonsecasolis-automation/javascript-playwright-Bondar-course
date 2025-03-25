@@ -48,7 +48,8 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
-      dependencies: ['setup'] // before running this broeser project we need to run the 'setup' project
+      dependencies: ['setup'], // before running this broeser project we need to run the 'setup' project
+      // fullyParallel: true, // this overrides the global setting
     },
 
     {
