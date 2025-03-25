@@ -25,6 +25,11 @@ One can define custom commands on the package.json file and run them using `npm 
 }
 ```
 
+## Using the Faker library
+```
+npm i @faker-js/faker --save-dev --force
+```
+
 ## Debugging
 ```
 npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on --debug
@@ -33,6 +38,24 @@ npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on --d
 Another way to debug is to generate "traces", a bundle of information for debugging containing
 images ordered in sequential order and network information. To enable traces we modify the property `use.trace` in file playwright.config.ts by setting `trace: 'on-first-retry'` to 
 `trace: 'on'`. The traces are attached to the botton of each failed test case on the Playwright report.
+
+## Retries
+* By default (retry is OFF), Playwright retries the failed test cases alone in a new browser sesions, when retry is ON, Playwright retries the failed test cases along the passed test cases in a new browser session. The retry flag can be configured in the playwright.config.ts file (retries node): change `retries: process.env.CI ? 2 : 0` to `retries: process.env.CI ? 2 : 1` or `retries: 1,`. 
+
+Alternatively, retry can be configured just for one test suite:
+```
+test.describe('Form Layouts page', () => {
+    test.describe.configure({retries: 2})
+    
+    test('test1', async({page}), testInfo => {
+        if(testInfo.retry)
+        {
+            // clean database (anything that you want to use on each retry)
+        }
+    })
+
+})
+```
 
 # Application under test (Angular)
 ```
@@ -83,7 +106,10 @@ The syntax is a bit different than Selenium, specially if convined with JS/TS (w
 * you can navigate backwards in locators using "..".
 
 ### Javascript / Typescript...
-Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication.
+Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication. Some advantages are:
+
+* you can use libraries created in JS to test, let's say, React.JS applications,
+* you can define aliases for long commands in the package.json file.
 
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
