@@ -17,7 +17,7 @@ jobs:
       run: npm ci
     - name: Setup application under test
       run: | 
-        wget https://github.com/bondar-artem/pw-practice-app/archive/refs/heads/master.zip
+        wget https://github.com/bondar-artem/pw-practice-app/archive/refs/heads/master.zip -O pw-practice-app-master.zip
         unzip pw-practice-app-master.zip
         cd pw-practice-app-master
         npm install --force
