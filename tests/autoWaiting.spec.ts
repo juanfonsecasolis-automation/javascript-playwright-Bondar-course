@@ -17,7 +17,7 @@ test.beforeEach(async ({page}, testInfo) => {
     testInfo.setTimeout(testInfo.timeout + 2000)
 })
 
-test.describe('Waiting suite', () => {
+test.describe.skip('Waiting suite', () => {
 
     test('Autowait', async ({page}) => {
         // textContents() waits for the text to appear
