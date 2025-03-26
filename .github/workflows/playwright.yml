@@ -15,12 +15,13 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
-    #- name: Setup application under test
-    #  run: | 
-    #    git clone git@github.com:bondar-artem/pw-practice-app.git
-    #    cd pw-practice-app
-    #    npm install --force
-    #    npm start &
+    - name: Setup application under test
+      run: | 
+        wget https://github.com/bondar-artem/pw-practice-app/archive/refs/heads/master.zip
+        unzip pw-practice-app-master.zip
+        cd pw-practice-app-master
+        npm install --force
+        npm start &
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
