@@ -1,41 +1,28 @@
 import { defineConfig, devices } from '@playwright/test';
 import type { TestOptions } from './test-options';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
 import * as dotenv from 'dotenv'
-//import path from 'path';
-//dotenv.config({ path: path.resolve(__dirname, '.env') });
 dotenv.config();
 
 /**
+ * Global settings (shared for all projects)
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig<TestOptions>({
-  //globalTimeout: 68000,
-  //timeout: 20000,
+  globalTimeout: 70000,
+  timeout: 40000,
   testDir: './tests',
-  /* Run tests in files in parallel */
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 1,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  forbidOnly: !!process.env.CI, /* Fail the build on CI if you accidentally left test.only in the source code. */
+  retries: process.env.CI ? 2 : 1,  /* Retry on CI only */
+  workers: process.env.CI ? 1 : undefined,  /* Opt out of parallel tests on CI. */
+  reporter: 'html',   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  
+  /* Runtime settings */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: '/',
     customEnvironmentVariable: 'anyURL',  // created on test-options.ts
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
-    //actionTimeout: 5000,
-    //navigationTimeout: 5000,
     extraHTTPHeaders: {
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
     },
@@ -44,9 +31,14 @@ export default defineConfig<TestOptions>({
       mode: 'retain-on-failure',
       size: {width:1920, height:1080}
     }
+    //actionTimeout: 5000,
+    //navigationTimeout: 5000,
   },
 
-  /* Configure projects for major browsers */
+  /**
+   * Project specific settings
+   * See https://playwright.dev/docs/test-configuration.
+   */
   projects: [
     {
       name: 'setup',
@@ -59,58 +51,27 @@ export default defineConfig<TestOptions>({
         storageState: '.auth/user.json',
         baseURL: 'http://localhost:4200'
       },
-      dependencies: ['setup'], // before running this browser project we need to run the 'setup' project
+      dependencies: ['setup'], // run 'setup' project first
     },
     {
       name: 'chromium',
       use: { 
-        ...devices['Desktop Chrome'], 
+        browserName: 'chromium', 
         storageState: '.auth/user.json',
         baseURL: 'http://localhost:4200',
       },
-      dependencies: ['setup'], // before running this browser project we need to run the 'setup' project
-      // fullyParallel: true, // this overrides the global setting
+      dependencies: ['setup'], // run 'setup' project first
     },
 
     {
       name: 'firefox',
       use: { 
-        ...devices['Desktop Firefox'], 
+        browserName: 'firefox', 
         storageState: '.auth/user.json',
         baseURL: 'http://localhost:4200',
       },
       dependencies: ['setup'] // before running this browser project we need to run the 'setup' project
-    },
-
-    {
-      name: 'webkit',
-      use: { 
-        ...devices['Desktop Safari'], 
-        storageState: '.auth/user.json',
-        baseURL: 'http://localhost:4200',
-      },
-      dependencies: ['setup'] // before running this browser project we need to run the 'setup' project
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    }
   ],
 
   /* Run your local dev server before starting the tests */
