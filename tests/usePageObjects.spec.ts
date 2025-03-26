@@ -33,11 +33,15 @@ test('parameterized methods', async ({page}) => {
     const randomFullName = faker.person.fullName()
     const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(1000)}@test.com`
 
+    await page.screenshot({path: 'screenshots/formsLayoutsPage.png'})
     await pm.onFormLayoutPage().submitInlineFormWithEmailEmailAndCheckbox(
         randomFullName,
         randomEmail,
         true
     )
+
+    // screenshot of just one part of the screen
+    await page.locator('nb-card', {hasText: 'Inline form'}).screenshot({path: 'screenshots/formsLayoutsPageLocator.png'})
 })
 
 test('parameterized datepicker', async ({page}) => {

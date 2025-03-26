@@ -68,6 +68,17 @@ test.describe.configure({mode: 'parallel'})
 
 It is not a good practice to make tests execute in certain order, but that can be achieved by adding `test.describe.configure({mode: 'serial'})` to the test suite.
 
+## Video
+Enabled on "use" tag at playwright.config.ts (by default 100x100 pixels) and run the tests via CLI:
+```
+video: 
+{
+    mode: 'on',
+    size: {width:1920, height:1080}
+}
+```
+The video will be saved on the test-results folder and attached automatically to the report.
+
 ## Skip test cases
 ```
 test.skip('test1', async(test{page}), testInfo => {

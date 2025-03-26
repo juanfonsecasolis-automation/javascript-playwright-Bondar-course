@@ -36,6 +36,11 @@ export default defineConfig({
     //navigationTimeout: 5000,
     extraHTTPHeaders: {
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
+    },
+    video: 
+    {
+      mode: 'on',
+      size: {width:1920, height:1080}
     }
   },
 
