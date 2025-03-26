@@ -70,7 +70,7 @@ It is not a good practice to make tests execute in certain order, but that can b
 
 ## Skip test cases
 ```
-test.skip('test1', async({page}), testInfo => {
+test.skip('test1', async(test{page}), testInfo => {
     ...
 ```
 
