@@ -47,7 +47,7 @@ export default defineConfig<TestOptions>({
     {
       name: 'dev',
       use: { 
-        ...devices['Desktop Chrome'], 
+        browserName: 'chromium', 
         storageState: '.auth/user.json',
         baseURL: 'http://localhost:4200'
       },
