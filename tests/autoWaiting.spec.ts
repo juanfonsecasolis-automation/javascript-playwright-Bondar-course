@@ -8,7 +8,7 @@ import {test, expect} from '@playwright/test'
 // this applies to all test suites below
 test.beforeEach(async ({page}, testInfo) => {
     // the button on the page below takes 15s to complete
-    await page.goto('http://uitestingplayground.com/ajax')
+    await page.goto(process.env.URL as string)
 
     // auto-wait before performing an action (https://playwright.dev/docs/actionability)
     // locator.click() waits for element to be visible, stable, no pending events, enabled
@@ -17,7 +17,7 @@ test.beforeEach(async ({page}, testInfo) => {
     testInfo.setTimeout(testInfo.timeout + 2000)
 })
 
-test.describe.skip('Waiting suite', () => {
+test.describe('Waiting suite', () => {
 
     test('Autowait', async ({page}) => {
         // textContents() waits for the text to appear

@@ -1,17 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
+import type { TestOptions } from './test-options';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import * as dotenv from 'dotenv'
+//import path from 'path';
+//dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig<TestOptions>({
   //globalTimeout: 68000,
   //timeout: 20000,
   testDir: './tests',
@@ -28,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    customEnvironmentVariable: 'anyURL',  // created on test-options.ts
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
@@ -49,24 +51,45 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: 'auth.setup.ts'
+    }, 
+    {
+      name: 'dev',
+      use: { 
+        ...devices['Desktop Chrome'], 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200'
+      },
+      dependencies: ['setup'], // before running this browser project we need to run the 'setup' project
     },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
-      dependencies: ['setup'], // before running this broeser project we need to run the 'setup' project
+      use: { 
+        ...devices['Desktop Chrome'], 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200',
+      },
+      dependencies: ['setup'], // before running this browser project we need to run the 'setup' project
       // fullyParallel: true, // this overrides the global setting
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], storageState: '.auth/user.json' },
-      dependencies: ['setup'] // before running this broeser project we need to run the 'setup' project
+      use: { 
+        ...devices['Desktop Firefox'], 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200',
+      },
+      dependencies: ['setup'] // before running this browser project we need to run the 'setup' project
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'], storageState: '.auth/user.json' },
-      dependencies: ['setup'] // before running this broeser project we need to run the 'setup' project
+      use: { 
+        ...devices['Desktop Safari'], 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200',
+      },
+      dependencies: ['setup'] // before running this browser project we need to run the 'setup' project
     },
 
     /* Test against mobile viewports. */

@@ -7,7 +7,7 @@ import {test, expect} from '@playwright/test'
 import { assert } from 'console'
 
 test.beforeEach(async ({page}) => {
-    await page.goto('http://localhost:4200/')
+    await page.goto('/')
 })
 
 test.describe('Form Layouts page', () => {

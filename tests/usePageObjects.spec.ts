@@ -8,7 +8,7 @@ import { PageManager } from '../page-objects/pageManager'
 import { faker } from '@faker-js/faker'
 
 test.beforeEach(async ({page}) => {
-    await page.goto('http://localhost:4200/')
+    await page.goto('/')
 })
 
 test('navigate to form page', async ({page}) => {
@@ -25,8 +25,8 @@ test('parameterized methods', async ({page}) => {
     const pm = new PageManager(page)
     await pm.navigateTo().formLayoutsPage()
     await pm.onFormLayoutPage().submitUsingTheGridFormWithCredentialsAndSelectOption(
-        'test@test.com',
-        'Welcome1',
+        process.env.USERNAME as string,
+        process.env.PASSWORD as string,
         'Option 2'
     )
 

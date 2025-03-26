@@ -8,8 +8,9 @@ Solution for exercises of the course "Playwright: Web Automation Testing From Ze
 ## Setup
 1. Install "Playwright Test for VSCode".
 1. Install Node.js LTS (if installed, version can be known typing `node -v`).
-1. Run as sudo `npx playwright install`
-1. Run `npm init playwright@latest`
+1. Run as sudo `npx playwright install`.
+1. Run `npm init playwright@latest`.
+1. Run `npm install --save dotnet`.
 
 ## Run
 ```
