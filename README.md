@@ -17,6 +17,7 @@ Solution for exercises of the course "Playwright: Web Automation Testing From Ze
 npx playwright test firstTest.spec.ts --project=Chromium --headed --trace on
 npx playwright show-report
 npx playwright test --ui
+npx playwright test --config=playwright-prod.config.ts
 ```
 
 One can define custom commands on the package.json file and run them using `npm run <customCommand>`, for instance:

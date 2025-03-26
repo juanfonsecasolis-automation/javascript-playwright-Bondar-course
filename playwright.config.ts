@@ -26,11 +26,11 @@ export default defineConfig<TestOptions>({
     extraHTTPHeaders: {
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
     },
-    video: 
+    /*proxy: 
     {
-      mode: 'retain-on-failure',
-      size: {width:1920, height:1080}
-    }
+      server: 'http://myproxy.com:3128',
+      bypass: 'localhost'
+    }*/
     //actionTimeout: 5000,
     //navigationTimeout: 5000,
   },
@@ -62,7 +62,6 @@ export default defineConfig<TestOptions>({
       },
       dependencies: ['setup'], // run 'setup' project first
     },
-
     {
       name: 'firefox',
       use: { 
@@ -71,6 +70,20 @@ export default defineConfig<TestOptions>({
         baseURL: 'http://localhost:4200',
       },
       dependencies: ['setup'] // before running this browser project we need to run the 'setup' project
+    },
+    {
+      name: 'pageObjectFullScreen',
+      testMatch: 'usePageObjects.spec.ts',
+      use: { 
+        browserName: 'firefox', 
+        baseURL: 'http://localhost:4200',
+        video: 
+        {
+          mode: 'retain-on-failure',
+          size: {width:1920, height:1080}
+        },
+        viewport: { width: 1280, height: 720 }
+      }
     }
   ],
 
