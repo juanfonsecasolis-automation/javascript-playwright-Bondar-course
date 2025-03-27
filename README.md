@@ -138,6 +138,8 @@ The syntax is a bit different than Selenium, specially if convined with JS/TS (w
 * you can find elements by a generic role using the GetByRole method (e.g. button, label) instead of using XPath,
 * you can navigate backwards in locators using "..".
 
+As disadvantages, creating test fixtures is tricky.
+
 ### Javascript / Typescript...
 Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication. Some advantages are:
 

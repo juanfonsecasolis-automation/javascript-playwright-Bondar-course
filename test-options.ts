@@ -43,22 +43,22 @@ export const test = base.extend<TestOptions>({
      * Option 2. One fixture depends on another.
      */
     formLayoutsPage: async({page}, use) => {
-        // test precondition or setup
+        // test precondition or local setup
         await page.goto('/')
         await page.getByText('Forms').click()
         await page.getByText('Form Layouts').click()
         await use('')
-        // test post conditions or teardown (executed after "use('')", as yield in Python)
+        // test post conditions or local teardown (executed after "use('')", as yield in Python)
         // ...
     },
 
     // here formLayoutPage is a precondition for the formLayoutsPage used 
     // in testWithFixtures.spec.ts
     pageManager: async({page, formLayoutsPage}, use) => {
-        // test precondition or setup
+        // test precondition or local setup
         const pm = new PageManager(page)
         await use(pm)
-        // test post conditions or teardown
+        // test post conditions or local teardown
         // ...
     }
 })

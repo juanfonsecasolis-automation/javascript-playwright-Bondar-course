@@ -43,7 +43,26 @@ export default defineConfig<TestOptions>({
     {
       name: 'setup',
       testMatch: 'auth.setup.ts'
-    }, 
+    },
+    {
+      name: 'articleSetup',
+      testMatch: 'newArticle.setup.ts',
+      dependencies: ['setup'],
+      teardown: 'articleCleanUp'
+    },
+    {
+      name: 'articleCleanUp',
+      testMatch: 'articleCleanUp.setup.ts'
+    },
+    {
+      name: 'likeCounter',
+      testMatch: 'likesCounter.spec.ts',
+      use: { 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200'
+      },
+      dependencies: ['articleSetup']
+    },
     {
       name: 'dev',
       use: { 
