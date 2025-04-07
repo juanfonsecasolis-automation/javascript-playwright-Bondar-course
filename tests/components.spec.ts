@@ -10,7 +10,7 @@ test.beforeEach(async ({page}) => {
     await page.goto('/')
 })
 
-test.describe('Form Layouts page', () => {
+test.describe('Form Layouts page @smoke', () => {
 
     test.beforeEach(async ({page}) => {
         await page.getByText('Forms').click()

@@ -90,6 +90,20 @@ test.skip('test1', async(test{page}), testInfo => {
 ## Fixtures
 Are like the Before/After test hooks but more powerful to setup our test environment in advance.
 
+## Tags
+Use as follows: `npx playwright test --project=chromium --grep smoke`. Tags are defines at test case or test suite as below:
+```
+test('navigate to form page @smoke @regression', async ({page}) => {
+    const pm = new PageManager(page)
+    await pm.navigateTo().formLayoutsPage();
+    ...
+
+test.describe('Form Layouts page @smoke', () => {
+    ...
+```
+
+Multiple tags can be used by specifying the pipe symbol, as follows: `npx playwright test --project=chromium --grep @smoke|@regression` (Linux) or `npx playwright test --project=chromium --grep --% @smoke^|@regression^` (Windows).
+
 # Application under test (Angular)
 ```
 git clone git@github.com:bondar-artem/pw-practice-app.git
