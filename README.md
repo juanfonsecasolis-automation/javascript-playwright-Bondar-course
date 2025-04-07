@@ -162,7 +162,7 @@ Using JS/TS was not that bad, but it has a steeper learning curve (compared with
 1. you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it),
 2. the use of async and the parenthesis nesting "({})" is unusual (sending a dictionary of parameters),
 3. you need to export functions to be visible in outside modules,
-4. you need to develop in terms like the ES modules.
+4. you need to develop knowledge in terms like the ES modules.
 
 Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Some advantages are:
 
