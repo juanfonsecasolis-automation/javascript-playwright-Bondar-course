@@ -159,7 +159,7 @@ As disadvantages, creating test fixtures is tricky.
 
 ### Javascript / Typescript...
 Using JS/TS was not that bad, but it has a steeper learning curve (compared with C#, Java, or Python), and it is not a recommendation for people with no previous background in programming. In particular: 
-1. you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it),
+1. you need to type the keyword "await" all the times you want to access a web component (it's a like tricky to know where you have to put it),
 2. the use of async and the parenthesis nesting "({})" is unusual (sending a dictionary of parameters),
 3. you need to export functions to be visible in outside modules,
 4. you need to develop knowledge in terms like the ES modules.
