@@ -5,6 +5,7 @@
 
 import { test, expect } from '@playwright/test'; // external import
 import { createRequire } from 'node:module'
+import tags from '../test-data/tags.json' with { type: "json" }
 
 test.beforeEach(async ({page, request}) => {
     await page.goto('https://conduit.bondaracademy.com/')
@@ -14,14 +15,6 @@ test('mock API response and verify title in UI', async ({page}) => {
 
     // configure the mock for tags
     await page.route('*/**/api/tags', async route => {
-        
-        // read the content of the tags.json file, this is a workaround for 
-        // the error received when using the stamente below
-        // import tags from '../test-data/tags.json' with { type: "json" };
-        const authFile = '.auth/user.json'
-        const require = createRequire(import.meta.url)
-        const tags = require('../test-data/tags.json')
-
         await route.fulfill({
             body: JSON.stringify(tags)
         }) 

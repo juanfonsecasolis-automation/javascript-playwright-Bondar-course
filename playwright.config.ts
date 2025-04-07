@@ -25,7 +25,7 @@ export default defineConfig<TestOptions>({
     trace: 'on',
     extraHTTPHeaders: {
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
-    },
+    }
     /*proxy: 
     {
       server: 'http://myproxy.com:3128',
@@ -34,6 +34,8 @@ export default defineConfig<TestOptions>({
     //actionTimeout: 5000,
     //navigationTimeout: 5000,
   },
+  globalSetup: require.resolve('./global-setup.ts'),
+  globalTeardown: require.resolve('./global-teardown.ts'),
 
   /**
    * Project specific settings
@@ -58,13 +60,30 @@ export default defineConfig<TestOptions>({
       name: 'likeCounter',
       testMatch: 'likesCounter.spec.ts',
       use: { 
-        storageState: '.auth/user.json',
-        baseURL: 'http://localhost:4200'
+        storageState: '.auth/user.json'
+      },
+      dependencies: ['articleSetup']
+    },
+    {
+      name: 'likeCounterGlobal',
+      testMatch: 'likesCounterGlobal.spec.ts',
+      use: { 
+        storageState: '.auth/user.json'
       },
       dependencies: ['articleSetup']
     },
     {
       name: 'dev',
+      use: { 
+        browserName: 'chromium', 
+        storageState: '.auth/user.json',
+        baseURL: 'http://localhost:4200'
+      },
+      dependencies: ['setup'], // run 'setup' project first
+    },
+    {
+      name: 'regression',
+      testIgnore: 'likesCounter.spec.ts',
       use: { 
         browserName: 'chromium', 
         storageState: '.auth/user.json',

@@ -105,6 +105,9 @@ node lesson1.js
 ...
 ```
 
+## Troubleshootle
+When using `import user from '<jsonPath>' assert { type: "json" }` error 'ReferenceError: require is not defined in ES module scope' might appear, to bypass it set in the package.json `type: 'commonjs'` [10].
+
 ## Theory
 
 ### Page Object Model (POM)
@@ -156,3 +159,4 @@ Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS
 7. Pragmatic Maciej. No, TypeScript is not OOP version of JavaScript. Dev, 2020. URL: https://dev.to/macsikora/no-typescript-is-not-oop-version-of-javascript-3ed4 (consulted on 12/06/). 
 8. Matthew Finio, Amanda Downie. What are enterprise applications? IBM, 8 May 2024. URL: https://www.ibm.com/topics/enterprise-applications (last consulted on 12/16/24).
 9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24).
+10. Alinton Gutierrez in reply to AskCoder. ReferenceError: require is not defined in ES module scope, you can use import instead gulp sass. StackOverflow. URL: https://stackoverflow.com/questions/69099763/referenceerror-require-is-not-defined-in-es-module-scope-you-can-use-import-in (last consulted on 07/04/25)

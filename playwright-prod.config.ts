@@ -32,7 +32,7 @@ export default defineConfig<TestOptions>({
       testMatch: 'workingWithApis.spec.ts',
       use: { 
         browserName: 'chromium', 
-        storageState: '.auth/user.json',
+        storageState: './.auth/user.json',
         baseURL: 'http://localhost:4200'
       },
       dependencies: ['setup'], // run 'setup' project first
