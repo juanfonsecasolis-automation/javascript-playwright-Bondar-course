@@ -158,7 +158,13 @@ The syntax is a bit different than Selenium, specially if convined with JS/TS (w
 As disadvantages, creating test fixtures is tricky.
 
 ### Javascript / Typescript...
-Using JS/TS was not that bad. Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Two points against it is that (i) you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it), and (ii) the use of async and the parenthesis nesting "({})" is a complication. Some advantages are:
+Using JS/TS was not that bad, but it has a steeper learning curve (compared with C#, Java, or Python), and it is not a recommendation for people with no previous background in programming. In particular: 
+1. you need to type the keyword "await" all the times you want to access a web component (it's a like tricky where you have to put it),
+2. the use of async and the parenthesis nesting "({})" is unusual (sending a dictionary of parameters),
+3. you need to export functions to be visible in outside modules,
+4. you need to develop in terms like the ES modules.
+
+Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Some advantages are:
 
 * you can use libraries created in JS to test, let's say, React.JS applications,
 * you can define aliases for long commands in the package.json file.
