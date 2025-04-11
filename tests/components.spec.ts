@@ -33,6 +33,18 @@ test.describe('Form Layouts page @smoke', () => {
         expect(usingTheGridEmailInput).toHaveValue('user2@domain.com')  // toHaveText won't work
     })
 
+    test('Radio buttons asserted with snapshots', async ({page}) => {
+        const usingTheGridForm = page.locator('nb-card', {hasText: "Using the Grid"});
+        await usingTheGridForm.getByLabel('Option 1').check({force: true})   // force because the radio button has class "visually hidden"
+        const radioButton1 = usingTheGridForm.getByRole('radio', {name: 'Option 1'})
+        await radioButton1.check({force: true})
+
+        const radioStatus = await radioButton1.isChecked()
+
+        // this requires to run `npx playwright test --update-snapshots` (like Sikuli for Selenium)
+        await expect(usingTheGridForm).toHaveScreenshot({maxDiffPixels: 150})
+    })
+
     test('Radio buttons', async ({page}) => {
 
         const usingTheGridForm = page.locator('nb-card', {hasText: "Using the Grid"});

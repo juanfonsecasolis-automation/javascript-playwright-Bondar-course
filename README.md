@@ -107,16 +107,22 @@ Multiple tags can be used by specifying the pipe symbol, as follows: `npx playwr
 ## Allure
 Installation on Linux:
 ```
-sudo apt-add-repository ppa:qameta/allure
-sudo apt-get update
+sudo apt-get install default-jre-headless
 sudo apt-get install allure
-npx install playwright
+npm i -D @playwright/test allure-playwright --force
+wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure_2.33.0-1_all.deb
+sudo dpkg -i allure_2.33.0-1_all.deb 
 ```
 
-Common commands to install the JS library and generate the HTML report:
+To generate the HTML report (run the test project first):
 ```
-npm i -D @playwright/test allure-playwright --force
 allure generate allure-results -o allure-results --clean
+```
+
+## Generate screenshots
+For image-to-image assertions (like Sikuli in Selenium):
+```
+npx playwright test --update-snapshots
 ```
 
 # Application under test (Angular)
