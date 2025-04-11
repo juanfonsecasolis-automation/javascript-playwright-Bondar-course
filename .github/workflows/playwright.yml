@@ -17,7 +17,13 @@ jobs:
       run: npm ci
     - name: Install Allure
       run: |
+        sudo apt-add-repository ppa:qameta/allure
+        sudo apt-get update
+        sudo apt-get install allure
+        npm i -D @playwright/test allure-playwright --force
         npx install playwright
+        wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure_2.33.0-1_all.deb
+        sudo dpkg -i allure_2.33.0-1_all.deb
     - name: Setup application under test
       run: | 
         wget https://github.com/bondar-artem/pw-practice-app/archive/refs/heads/master.zip -O pw-practice-app-master.zip
@@ -33,9 +39,17 @@ jobs:
         CONDUIT_PASSWORD: ${{ secrets.CONDUIT_PASSWORD }}
       run: npx playwright test --project=Chromium
       continue-on-error: true
+    - name: Allure report
+      run: allure generate allure-results -o allure-results --clean
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
         path: playwright-report/
+        retention-days: 30
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-report
+        path: allure-results/
         retention-days: 30
