@@ -17,14 +17,14 @@ jobs:
       run: npm ci
     - name: Install Allure
       run: |
-        wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure_2.33.0-1_all.deb
-        sudo dpkg -i allure_2.33.0-1_all.deb
-        sudo apt --fix-broken install
         sudo apt-add-repository ppa:qameta/allure
-        sudo apt-get update
+        sudo apt-get update  
+        sudo apt-get install default-jre-headless
         sudo apt-get install allure
         npm i -D @playwright/test allure-playwright --force
         npx install playwright
+        wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure_2.33.0-1_all.deb
+        sudo dpkg -i allure_2.33.0-1_all.deb 
     - name: Setup application under test
       run: | 
         wget https://github.com/bondar-artem/pw-practice-app/archive/refs/heads/master.zip -O pw-practice-app-master.zip
