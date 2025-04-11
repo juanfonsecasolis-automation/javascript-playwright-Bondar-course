@@ -122,6 +122,15 @@ export default defineConfig<TestOptions>({
         },
         viewport: { width: 1280, height: 720 }
       }
+    },
+    {
+      name: 'mobile',
+      testMatch: 'testMobile.spec.ts',  
+      use: { 
+        ...devices['iPhone 11'],  // alternatively, you can use viewport with the desired resolution
+        browserName: 'chromium', 
+        baseURL: 'http://localhost:4200',
+      }
     }
   ],
 
