@@ -17,6 +17,7 @@ jobs:
       run: npm ci
     - name: Install Allure
       run: |
+        sudo apt-get install default-jre-headless
         wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure_2.33.0-1_all.deb
         sudo dpkg -i allure_2.33.0-1_all.deb  
         npm i -D @playwright/test allure-playwright --force
