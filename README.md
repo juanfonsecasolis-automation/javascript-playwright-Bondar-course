@@ -104,6 +104,21 @@ test.describe('Form Layouts page @smoke', () => {
 
 Multiple tags can be used by specifying the pipe symbol, as follows: `npx playwright test --project=chromium --grep @smoke|@regression` (Linux) or `npx playwright test --project=chromium --grep --% @smoke^|@regression^` (Windows).
 
+## Allure
+Installation on Linux:
+```
+sudo apt-add-repository ppa:qameta/allure
+sudo apt-get update
+sudo apt-get install allure
+npx install playwright
+```
+
+Common commands to install the JS library and generate the HTML report:
+```
+npm i -D @playwright/test allure-playwright --force
+allure generate allure-results -o allure-results --clean
+```
+
 # Application under test (Angular)
 ```
 git clone git@github.com:bondar-artem/pw-practice-app.git
