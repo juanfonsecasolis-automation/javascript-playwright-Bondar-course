@@ -124,6 +124,13 @@ For image-to-image assertions (like Sikuli in Selenium):
 ```
 npx playwright test --update-snapshots
 ```
+Ground-of-truth images are created inside the test folder, under a folder with the name of the file where the "toHaveScreenshot" method is invoked. Example:
+```
+npx playwright test --project=chromium --grep snapshot
+```
+
+Differences in snapshots can be later seen in the test report: 
+![](/img/snapshots.png)
 
 # Application under test (Angular)
 ```
