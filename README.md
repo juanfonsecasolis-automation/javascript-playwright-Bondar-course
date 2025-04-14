@@ -179,16 +179,19 @@ The syntax is a bit different than Selenium, specially if convined with JS/TS (w
 As disadvantages, creating test fixtures is tricky.
 
 ### Javascript / Typescript...
-Using JS/TS was not that bad, but it has a steeper learning curve (compared with C#, Java, or Python), and it is not a recommendation for people with no previous background in programming. In particular: 
+Using JS/TS was not that bad, but it has a steeper learning curve compared with C#, Java, or Python; also it is not recommended for people with no previous background in programming. In particular: 
 1. you need to type the keyword "await" all the times you want to access a web component (it's a like tricky to know where you have to put it),
 2. the use of async and the parenthesis nesting "({})" is unusual (sending a dictionary of parameters),
 3. you need to export functions to be visible in outside modules,
-4. you need to develop knowledge in terms like the ES modules.
+4. you need to develop knowledge in terms like the ES modules,
+5. you need to use the `export` keyword to use functions outside a file.
 
-Four points in favor are that (i) the syntax of JS/TS is not that different than other languages, like Java, (ii) you can call ReactJS native test libraries, (iii) you can use the describe-test syntax, and (iv) you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions). Some advantages are:
-
-* you can use libraries created in JS to test, let's say, React.JS applications,
-* you can define aliases for long commands in the package.json file.
+Some points in favor are:
+1. the syntax of JS/TS is not that different than other languages, like Java,
+1. you can call ReactJS native test libraries,
+1. you can define aliases for long commands in the package.json file,
+1. you can use the describe-test syntax, and 
+1. you can practically use inheritance, abstraction, and polymorphism (of course, I did not entered in theorical purist discussions).
 
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
