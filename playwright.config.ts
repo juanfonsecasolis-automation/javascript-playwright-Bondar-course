@@ -44,6 +44,8 @@ export default defineConfig<TestOptions>({
     //actionTimeout: 5000,
     //navigationTimeout: 5000,
   },
+
+  // TODO: uncomment when finding a way to send the email/password to the Docker container
   globalSetup: require.resolve('./global-setup.ts'),
   globalTeardown: require.resolve('./global-teardown.ts'),
 
@@ -145,9 +147,9 @@ export default defineConfig<TestOptions>({
   ],
 
   /* Run your local dev server before starting the tests */
-  /*webServer: {
-    command: 'cd pw-practice-app; npm install --force; npm start',
+  webServer: {
+    command: 'cd pw-practice-app; npm start',
     url: 'http://localhost:4200',
     reuseExistingServer: !process.env.CI,
-  },*/
+  },
 });

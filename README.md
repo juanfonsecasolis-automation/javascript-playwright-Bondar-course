@@ -134,16 +134,27 @@ Differences in snapshots can be later seen in the test report:
 
 # Application under test (Angular)
 ```
-git clone git@github.com:bondar-artem/pw-practice-app.git
+cd pw-practice-app # otherwise, clone it from git@github.com:bondar-artem/pw-practice-app.git
 npm install --force
 npm start
 open http://localhost:4200/
 ```
 
 ## Docker
+Building a docker image and running the tests in a container: 
 1. Install Docker Engine using the steps described on [11].
-1. Then, install Docker Desktop.
-1. Start Docker Desktop `docker desktop start`
+1. Install Docker Desktop using the steps described on [12].
+1. Start Docker Desktop `docker desktop start` to monitor the containers.
+1. Build your personal "pw-pageobject-test" image `docker build -t pw-pageobject-test .` (remember to comment globalSetup and globalTeardown until we find a way to send email/password securily).
+1. Run the image in a container in interacting mode: `docker run -it pw-pageobject-test`.
+1. Run the test project typing `npm run pageObjects-chrome` or `npx playwright test --project=pageObjectFullScreen`.
+
+To access the test report we need to copy it to the host machine running something called docker-compose (a way to orchestrate/control container creation, command execution, and return values):
+```
+sudo apt-get install docker-compose
+docker-compose up --build
+```
+
 
 ## Javascript review lessons
 ```
@@ -216,4 +227,5 @@ Some points in favor are:
 8. Matthew Finio, Amanda Downie. What are enterprise applications? IBM, 8 May 2024. URL: https://www.ibm.com/topics/enterprise-applications (last consulted on 12/16/24).
 9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24).
 10. Alinton Gutierrez in reply to AskCoder. ReferenceError: require is not defined in ES module scope, you can use import instead gulp sass. StackOverflow. URL: https://stackoverflow.com/questions/69099763/referenceerror-require-is-not-defined-in-es-module-scope-you-can-use-import-in (last consulted on 07/04/25).
-11. Docker. Install Docker Engine on Ubuntu. https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+11. Docker. Install Docker Engine on Ubuntu. URL: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository (last consulted on 14/04/25).
+12. Docker. Install Docker Desktop on Ubuntu. URL: https://docs.docker.com/desktop/setup/install/linux/ubuntu/ (last consulted on 14/04/25).
