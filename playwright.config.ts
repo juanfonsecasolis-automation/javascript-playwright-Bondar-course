@@ -9,7 +9,7 @@ dotenv.config();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig<TestOptions>({
-  globalTimeout: 70000,
+  //globalTimeout: 70000,
   timeout: 40000,
   testDir: './tests',
   fullyParallel: true,
@@ -145,9 +145,9 @@ export default defineConfig<TestOptions>({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  /*webServer: {
+    command: 'cd pw-practice-app; npm install --force; npm start',
+    url: 'http://localhost:4200',
+    reuseExistingServer: !process.env.CI,
+  },*/
 });

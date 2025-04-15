@@ -140,6 +140,11 @@ npm start
 open http://localhost:4200/
 ```
 
+## Docker
+1. Install Docker Engine using the steps described on [11].
+1. Then, install Docker Desktop.
+1. Start Docker Desktop `docker desktop start`
+
 ## Javascript review lessons
 ```
 cd lessons
@@ -210,4 +215,5 @@ Some points in favor are:
 7. Pragmatic Maciej. No, TypeScript is not OOP version of JavaScript. Dev, 2020. URL: https://dev.to/macsikora/no-typescript-is-not-oop-version-of-javascript-3ed4 (consulted on 12/06/). 
 8. Matthew Finio, Amanda Downie. What are enterprise applications? IBM, 8 May 2024. URL: https://www.ibm.com/topics/enterprise-applications (last consulted on 12/16/24).
 9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24).
-10. Alinton Gutierrez in reply to AskCoder. ReferenceError: require is not defined in ES module scope, you can use import instead gulp sass. StackOverflow. URL: https://stackoverflow.com/questions/69099763/referenceerror-require-is-not-defined-in-es-module-scope-you-can-use-import-in (last consulted on 07/04/25)
+10. Alinton Gutierrez in reply to AskCoder. ReferenceError: require is not defined in ES module scope, you can use import instead gulp sass. StackOverflow. URL: https://stackoverflow.com/questions/69099763/referenceerror-require-is-not-defined-in-es-module-scope-you-can-use-import-in (last consulted on 07/04/25).
+11. Docker. Install Docker Engine on Ubuntu. https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
