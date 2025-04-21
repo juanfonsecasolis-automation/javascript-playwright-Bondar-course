@@ -26,6 +26,7 @@ jobs:
       run: | 
         cd pw-practice-app
         npm install --force
+        npm start &
         cd ..
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps --force
