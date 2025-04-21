@@ -154,7 +154,10 @@ To access the test report we need to copy it to the host machine running somethi
 sudo apt-get install docker-compose
 docker-compose up --build
 ```
-
+## Argos CI
+```
+npm i --save-dev @argos-ci/playwright --force
+```
 
 ## Javascript review lessons
 ```

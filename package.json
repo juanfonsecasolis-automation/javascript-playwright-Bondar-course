@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/juanfonsecasolis-automation/javascript-playwright#readme",
   "devDependencies": {
+    "@argos-ci/playwright": "^5.0.3",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
     "@faker-js/faker": "^9.6.0",

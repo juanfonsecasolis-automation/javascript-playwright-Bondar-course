@@ -26,13 +26,23 @@ export default defineConfig<TestOptions>({
    * - 'allure-playwright'
    * - combination of the options above
    * */
-  reporter: [['html'], ['allure-playwright']],   
+  reporter: [
+    process.env.CI ? ['dot'] : ['list'],
+    ["@argos-ci/playwright/reporter",
+      {
+        uploadToArgos: !!process.env.CI
+      }
+    ],
+    ['html'], 
+    ['allure-playwright']
+  ],   
   
   /* Runtime settings */
   use: {
     baseURL: '/',
     customEnvironmentVariable: 'anyURL',  // created on test-options.ts
-    trace: 'on',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
     extraHTTPHeaders: {
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
     }

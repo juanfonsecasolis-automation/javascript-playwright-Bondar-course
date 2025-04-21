@@ -6,6 +6,7 @@
 import { test, expect } from '@playwright/test'
 import { PageManager } from '../page-objects/pageManager'
 import { faker } from '@faker-js/faker'
+import { argosScreenshot } from '@argos-ci/playwright'
 
 test.beforeEach(async ({page}) => {
     await page.goto('/')
@@ -88,4 +89,12 @@ test('parameterized datepicker range', async ({page}) => {
     // assert, verify the selected date is displayed after the datepicker component is closed
     //const expectedDate = `${expectedMonthShort} ${expectedDay}, ${expectedYear}` // string interpolation
     //await expect(calendarInputField).toHaveValue(expectedDate)
+})
+
+test('testing with argos ci', async({page}) => {
+    const pm = new PageManager(page)
+    await pm.navigateTo().formLayoutsPage()
+    await argosScreenshot(page, 'form layouts page')
+    await pm.navigateTo().datepickerPage()
+    await argosScreenshot(page, 'datepicker page')
 })
