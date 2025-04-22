@@ -98,3 +98,14 @@ test('testing with argos ci', async({page}) => {
     await pm.navigateTo().datepickerPage()
     await argosScreenshot(page, 'datepicker page')
 })
+
+test('dialog box', async ({page}) => {
+    const pm = new PageManager(page)
+    pm.navigateTo().smartTablePage()
+    page.on('dialog', dialog => {
+        expect(dialog.message()).toEqual('Are you sure you want to delete?')
+        dialog.accept()
+    })
+    await page.getByRole('table').locator('tr', {hasText: 'twitter@outlook.com'}).locator('.nb-trash').click()
+    await expect(page.locator('table tr').first()).not.toHaveText('twitter@outlook.com')
+})
