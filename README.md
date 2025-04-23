@@ -5,6 +5,8 @@ Copyright 2024-2025 Juan M. Fonseca-Solís.
 
 Solution for exercises of the course "Playwright: Web Automation Testing From Zero to Hero." of Artem Bondar [1].
 
+[Certificate of completion](http://ude.my/UC-5f317f4a-e620-45ab-ad6c-6a1c54785aa2)
+
 ## Setup
 1. Install "Playwright Test for VSCode".
 1. Install Node.js LTS (if installed, version can be known typing `node -v`).
