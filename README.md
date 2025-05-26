@@ -157,9 +157,11 @@ sudo apt-get install docker-compose
 docker-compose up --build
 ```
 ## Argos CI
+Install the Argos CI library:
 ```
 npm i --save-dev @argos-ci/playwright --force
 ```
+Integrate with Github Actions (Github settings > Argos CI).
 
 ## Javascript review lessons
 ```
