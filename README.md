@@ -45,7 +45,7 @@ images ordered in sequential order and network information. To enable traces, we
 
 ## Retries
 
-By default, the retry option is disabled. Playwright retries failed test cases alone, in a new browser session. When the retry is activated, Playwright retries the failed test cases and the passed test cases in a new browser session. The retry flag can be configured in the playwright.config.ts file (retries node): change `retries: process.env.CI ? 2 : 0` to `retries: process.env.CI ? 2 : 1` or `retries: 1,`. 
+By default, the retry option is disabled. Playwright retries failed test cases alone, in a new browser session. When the retry is activated, Playwright retries the failed test cases and the passed test cases in a new browser session. The retry flag can be configured in the playwright.config.ts file by changing `retries: process.env.CI ? 2 : 0` to `retries: process.env.CI ? 2 : 1` or `retries: 1,`. 
 
 Alternatively, retry can be configured just for one test suite:
 ```
