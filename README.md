@@ -29,6 +29,9 @@ One can define custom commands in the package.json file and run them using `npm 
 }
 ```
 
+## System diagram
+![](system-diagram/system-diagram.png)
+
 ## Using the Faker library
 ```
 npm i @faker-js/faker --save-dev --force
