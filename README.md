@@ -62,7 +62,7 @@ test.describe('Form Layouts page', () => {
 ```
 
 ## Paralelism
-Worker means a new instance of the web browser, and by default, Playwright runs spec files in parallel (one new worker per spec file). At the playwright.config.ts file, `fullyParallel: true` determines if tests can be run in parallel inside each spec file (otherwise they run sequentially), and `workers: process.env.CI ? 1 : undefined` determines the number of spec files that run in parallel (apparently, no more than five, why?). One can order the number of executions of spec files by adding a prefix (for instance, 001-*). One can also control whether a single spec file can run its tests in parallel:
+By default, Playwright runs in parallel by creating a new worker (web browser instance) per spec file. At the playwright.config.ts file, `fullyParallel: true` determines if tests can be run in parallel inside each spec file (otherwise they run sequentially), and `workers: process.env.CI ? 1 : undefined` determines the number of spec files that run in parallel (apparently, no more than five, why?). One can order the number of executions of spec files by adding a prefix (for instance, 001-*). One can also control whether a single spec file can run its tests in parallel:
 
 ```
 import { test, expect } from '@playwright/test'
