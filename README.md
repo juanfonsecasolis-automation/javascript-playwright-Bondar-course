@@ -189,7 +189,7 @@ Maintainability is one important aspect of successful end-to-end automation solu
 4. **Language is officially supported by the test tool.** Languages that are not supported by the company behind the test tool (for instance, Selenium WebDriver or Playwright) require hacks to work properly [2].
 
 ## Investigation problem
-According to Zhimin Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), a super version of Javascript, which violates i (TS is compiled) and is still not fully an OOPL [4, 5, 6, 7].
+According to Zhimin Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), is a super set of Javascript, which violates i (TS is compiled) and still doesn't fully implement OOPL [4, 5, 6, 7].
 
 ## Objective
 The objective of this repository is to put hands on automation using JS/TS with Playwright and determine if it is still a suitable combination.
