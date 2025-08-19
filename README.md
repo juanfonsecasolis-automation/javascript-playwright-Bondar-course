@@ -44,7 +44,7 @@ images ordered in sequential order and network information. To enable traces, we
 `trace: 'on'`. The traces are attached to the bottom of each failed test case on the Playwright report.
 
 ## Retries
-* By default (retry is OFF), Playwright retries the failed test cases alone in a new browser session; when retry is ON, Playwright retries the failed test cases along with the passed test cases in a new browser session. The retry flag can be configured in the playwright.config.ts file (retries node): change `retries: process.env.CI ? 2 : 0` to `retries: process.env.CI ? 2 : 1` or `retries: 1,`. 
+* By default, the retry option is disabled. Playwright retries failed test cases alone, in a new browser session. When the retry is activated, Playwright retries the failed test cases and the passed test cases in a new browser session. The retry flag can be configured in the playwright.config.ts file (retries node): change `retries: process.env.CI ? 2 : 0` to `retries: process.env.CI ? 2 : 1` or `retries: 1,`. 
 
 Alternatively, retry can be configured just for one test suite:
 ```
@@ -73,7 +73,7 @@ test.describe.configure({mode: 'parallel'})
 It is not a good practice to make tests execute in a certain order, but that can be achieved by adding `test.describe.configure({mode: 'serial'})` to the test suite.
 
 ## Video recording
-Enabled on "use" tag at playwright.config.ts (by default 100x100 pixels) and run the tests via CLI:
+Enabled on "use" tag at playwright.config.ts (by default 100 by 100 pixels) and run the tests via CLI:
 ```
 video: 
 {
