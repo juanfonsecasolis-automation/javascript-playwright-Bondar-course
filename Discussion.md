@@ -11,15 +11,15 @@ Determine if JS/TS/Playwright is a suitable tool-language combination for automa
 ## State of the art
 According to Zhan, maintainability is the key aspect when determining if an end-to-end automation framework is suitable for testing. Below is the criteria he provides for knowing if a combination of programming language, test tool, and test framework is a good choice [2]:
 
-* i. **Scripting (interpreted) language.** Scripting languages provide a high-level API to achieve the same functionality than other languages but by writing fewer lines of code [3, 9]. Fewer lines of code facilitate maintainability and readability. Besides, test automation is enterprise software, which means that it doesn't have to be implemented in the same language as the main application [2, 8].
-* ii. **Easy-to-understand syntax.** This is not necessarily a consequence of the previous point. Some scripting languages make excessive and unnecessary use of code nesting, parentheses (brackets, rounded, square), lambda expressions, and synchronization keywords, which makes readability difficult. Automation should be easy to write also by non-programming team members (for instance, starter manual testers) to help them ramp-up and alleviate the workload during high peaks [2].
-* iii. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that facilitates test maintainability by separating tests from pages. The layer that interacts with the system under test. For instance: web-page, mobile devices, and desktop [2].
-* iv. **Language is officially supported by the test tool.** Languages that are not supported by the company behind the test tool (for instance, Selenium WebDriver or Playwright) require hacks to work properly [2].
+* i. **Scripting (interpreted) language.** Scripting languages provide a high-level syntax that lets to achieve more functionality with fewer lines of code (fewer lines of code facilitates maintainability and readability) [3, 9]. Besides, test automation is enterprise software, which means that it doesn't have to be implemented in the same language as the main application, making scripting languages an option [2, 8].
+* ii. **Easy-to-understand syntax.** Some scripting languages make excessive and unnecessary use of code nesting, parentheses (brackets, rounded, square), lambda expressions, and synchronization keywords, which makes readability difficult. Automation should be easy to write also by team members with no coding skills to make the team more productive [2].
+* iii. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that separates tests from the page iteraction logic, facilitating the automation maintainability [2].
+* iv. **Language is officially supported by the test tool.** Languages that are not officially supported by the framework will require hacks to work properly [2].
 
 According to Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), is a super set of Javascript and violates i (TS is compiled) and iii (TS still doesn't fully implement OOPL) [4, 5, 6, 7].
 
 ## Method
-We created a minimal working example using JS/TS/Playwright and Artem Bondar's Udemy's course: "Playwright: Web Automation Testing From Zero to Hero" [1]. Then we compared Zhan's points to see if they are still valid on practice.
+We created a minimal working example using JS/TS/Playwright and Artem Bondar's course (highest rated Playwright course on Udemy as of August 2025), then we compared Zhan's points to see if JS/TS/Playwright is still a good combination [1].
 
 ## Findings
 
@@ -34,7 +34,7 @@ One disadvantag is that creating test fixtures is tricky.
 
 ### Abouts JS/TS...
 Using JS/TS wasn't that bad, but these languages have a steeper learning curve compared with C#, Java, or Python. Also, there are some annoyances compared with other languages: 
-1. programmers need to type the keyword "await" all the times when they want to access a web component (it's a like tricky to know where you have to put it),
+1. programmers need to type the keyword "await" all the times when they want to access a web component (it's tricky to know where you have to put them),
 2. the use of async and the parenthesis nesting "({})" (sending an empty dictionary of parameters) adds overhead,
 3. programmers have to export functions to make them visible in outside modules,
 4. programmers need to develop knowledge in terms of the ES modules,
@@ -42,14 +42,14 @@ Using JS/TS wasn't that bad, but these languages have a steeper learning curve c
 
 Some points in favor are:
 1. the syntax of JS/TS is not that different than other languages, like Java,
-1. you can call ReactJS native test libraries,
+1. you can call ReactJS test libraries natively,
 1. you can define aliases for long commands in the package.json file,
-1. you can use the describe-test syntax, and 
+1. you can use the describe-test syntax (preferred over Gherkin when implementing BDD), and 
 
-Regarding the points mentioned by Zhan; yes, JS/TS still doesn't have an easy-to-understand syntax compared with Python/Ruby (point ii); but in practice you don't notice that TS isn't a fully Object-oriented programming language (point iv). I didn't find problems implementing inheritance, abstraction, and polymorphism (of course, I don't want to enter into purist discussions).
+Regarding the points mentioned by Zhan; yes, JS/TS still doesn't have an easy-to-understand syntax compared with Python/Ruby (point ii); but in practice you don't notice that TS isn't a fully Object-oriented programming language (point iv). We didn't find problems implementing inheritance, abstraction, and polymorphism (of course, I don't want to enter into purist discussions).
 
 ## Conclusions
-Team members without previous experience in web development can find challenging writting automation in JS/TS, especially manual testers, that can be excluded from opportunities to become automation resources and increase the productivity of the team. In the same direction, choosing Playwright with Python or Ruby could be a better option than JS/TS. In practice, we didn't notice that TS isn't a fully OOP language but we did notice that the syntax is over complicated, affecting the velocity of coding. Playwright seems a good alternative for Selenium, because it adds an extra layer of abstraction that makes interaction with web components and assertions easier. 
+Team members without previous experience in web development can find challenging writting automation in JS/TS, especially manual testers, which can become excluded from opportunities to participate in automation and increase the productivity of the team. On the same direction, choosing Playwright with Python or Ruby could be a better option than JS/TS. In practice, we didn't notice that TS isn't a fully OOP language. We did notice that the JS/TS syntax is over complicated, and this could affect the coding velocity. Playwright seems a good alternative for Selenium, because it adds an extra layer of abstraction that makes interaction with web components and assertions easier. 
 
 ## References
 1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
