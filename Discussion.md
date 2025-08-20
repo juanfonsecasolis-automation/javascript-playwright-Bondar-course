@@ -1,0 +1,63 @@
+# Is Javascript a suitable language for automation?
+
+Copyright 2024-2025 Juan M. Fonseca-Solís.
+
+## Problem
+The use of automation frameworks based on Javascript (JS) and Typescript (TS) is becoming more and more popular, which is in partly due to the popularity of JS/Node.js in web development and the bias of authors to write the automation in the same language than the system under test.
+
+## Objective
+Determine if JS/TS/Playwright is a suitable tool-language combination for automating tests.
+
+## State of the art
+According to Zhan, maintainability is the key aspect when determining if an end-to-end automation framework is suitable for testing. Below is the criteria he provides for knowing if a combination of programming language, test tool, and test framework is a good choice [2]:
+
+* i. **Scripting (interpreted) language.** Scripting languages provide a high-level API to achieve the same functionality than other languages but by writing fewer lines of code [3, 9]. Fewer lines of code facilitate maintainability and readability. Besides, test automation is enterprise software, which means that it doesn't have to be implemented in the same language as the main application [2, 8].
+* ii. **Easy-to-understand syntax.** This is not necessarily a consequence of the previous point. Some scripting languages make excessive and unnecessary use of code nesting, parentheses (brackets, rounded, square), lambda expressions, and synchronization keywords, which makes readability difficult. Automation should be easy to write also by non-programming team members (for instance, starter manual testers) to help them ramp-up and alleviate the workload during high peaks [2].
+* iii. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that facilitates test maintainability by separating tests from pages. The layer that interacts with the system under test. For instance: web-page, mobile devices, and desktop [2].
+* iv. **Language is officially supported by the test tool.** Languages that are not supported by the company behind the test tool (for instance, Selenium WebDriver or Playwright) require hacks to work properly [2].
+
+According to Zhan, Javascript (JS) satisfies conditions i and iv, but not ii and iii, and Python and Ruby are better choices; besides, TypeScript (TS), is a super set of Javascript and violates i (TS is compiled) and iii (TS still doesn't fully implement OOPL) [4, 5, 6, 7].
+
+## Method
+We created a minimal working example using JS/TS/Playwright and Artem Bondar's Udemy's course: "Playwright: Web Automation Testing From Zero to Hero" [1]. Then we compared Zhan's points to see if they are still valid on practice.
+
+## Findings
+
+### About Playwright...
+The syntax is indeed different than Selenium, especially when combined with JS/TS (one mind-blowing aspect is that parameters are sent in a dictionary, instead one by one). Overall, this framework is fast and makes automation easy by creating an extra layer of abstraction to interact with web components. Here are some examples:
+* it provides methods to check/uncheck checkboxes, and you don't need to know in advance the previous status of the component,
+* it provides methods to apply assertions directly to locators instead of web component properties,
+* it let programmers find elements by a generic role using the GetByRole method (for instance, button or label) instead of using XPath,
+* it let programmers navigate backwards in locators paths using "..".
+
+One disadvantag is that creating test fixtures is tricky.
+
+### Abouts JS/TS...
+Using JS/TS wasn't that bad, but these languages have a steeper learning curve compared with C#, Java, or Python. Also, there are some annoyances compared with other languages: 
+1. programmers need to type the keyword "await" all the times when they want to access a web component (it's a like tricky to know where you have to put it),
+2. the use of async and the parenthesis nesting "({})" (sending an empty dictionary of parameters) adds overhead,
+3. programmers have to export functions to make them visible in outside modules,
+4. programmers need to develop knowledge in terms of the ES modules,
+5. programmers have to use the `export` keyword to use functions outside a file.
+
+Some points in favor are:
+1. the syntax of JS/TS is not that different than other languages, like Java,
+1. you can call ReactJS native test libraries,
+1. you can define aliases for long commands in the package.json file,
+1. you can use the describe-test syntax, and 
+
+Regarding the points mentioned by Zhan; yes, JS/TS still doesn't have an easy-to-understand syntax compared with Python/Ruby (point ii); but in practice you don't notice that TS isn't a fully Object-oriented programming language (point iv). I didn't find problems implementing inheritance, abstraction, and polymorphism (of course, I don't want to enter into purist discussions).
+
+## Conclusions
+Team members without previous experience in web development can find challenging writting automation in JS/TS, especially manual testers, that can be excluded from opportunities to become automation resources and increase the productivity of the team. In the same direction, choosing Playwright with Python or Ruby could be a better option than JS/TS. In practice, we didn't notice that TS isn't a fully OOP language but we did notice that the syntax is over complicated, affecting the velocity of coding. Playwright seems a good alternative for Selenium, because it adds an extra layer of abstraction that makes interaction with web components and assertions easier. 
+
+## References
+1. Artem Bondar. Playwright: Web Automation Testing From Zero to Hero. Udemy. URL: https://www.udemy.com/course/playwright-from-zero-to-hero (last consulted on 12/6/24).
+2. Zhimin Zhan. Why JavaScript Is Not a Suitable Language for Real Web Test Automation?. Medium. URL: https://medium.com/@zhiminzhan/why-javascript-is-not-a-suitable-language-for-real-web-test-automation-3a87eb4b0b50 (last consulted on 12/06/24).
+3. Coursera. 5 Types of Programming Languages. URL: https://www.coursera.org/articles/types-programming-language (last consulted on 12/06/24). 
+4. Vivasoft. Is JavaScript an Object Oriented Language. URL: https://vivasoftltd.com/is-javascript-an-object-oriented-language/ (last consulted on 12/06/24).
+5. G. Purcaru et al. Is JavaScript object-oriented? Stack Overflow. URL: https://stackoverflow.com/questions/107464/is-javascript-object-oriented (last consulted on 12/06/240).
+6. Zhimin Zhan. Why Ruby is the Best Scripting Language for End-to-End Test Automation? Medium. URL: https://zhiminzhan.medium.com/why-ruby-is-the-best-scripting-language-for-end-to-end-test-automation-d1b014d8cb8c (last consulted on 12/06/24)
+7. Pragmatic Maciej. No, TypeScript is not OOP version of JavaScript. Dev, 2020. URL: https://dev.to/macsikora/no-typescript-is-not-oop-version-of-javascript-3ed4 (consulted on 12/06/).
+8. Matthew Finio, Amanda Downie. What are enterprise applications? IBM, 8 May 2024. URL: https://www.ibm.com/topics/enterprise-applications (last consulted on 12/16/24).
+9. Coursera. What Are Scripting Languages? (And Why Should I Learn One?). Nov 29, 2023. URL: https://www.coursera.org/articles/scripting-language (last consulted on 12/16/24).
