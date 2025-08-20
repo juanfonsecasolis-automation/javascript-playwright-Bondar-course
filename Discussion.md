@@ -12,7 +12,7 @@ Determine if JS/TS/Playwright is a suitable tool-language combination for automa
 According to Zhan, maintainability is the key aspect when determining if an end-to-end automation framework is suitable for testing. Below is the criteria he provides for knowing if a combination of programming language, test tool, and test framework is a good choice [2]:
 
 * i. **Scripting (interpreted) language.** Scripting languages provide a high-level syntax that lets to achieve more functionality with fewer lines of code (fewer lines of code facilitates maintainability and readability) [3, 9]. Besides, test automation is enterprise software, which means that it doesn't have to be implemented in the same language as the main application, making scripting languages an option [2, 8].
-* ii. **Easy-to-understand syntax.** Some scripting languages make excessive and unnecessary use of code nesting, parentheses (brackets, rounded, square), lambda expressions, and synchronization keywords, which makes readability difficult. Automation should be easy to write also by team members with no coding skills to make the team more productive [2].
+* ii. **Easy-to-understand syntax.** Some scripting languages make excessive and unnecessary use of code nesting, parentheses (brackets, rounded, square), lambda expressions, and synchronization keywords, which makes readability difficult. Automation should be easy to write also by team members with low code skills to help with the team productivity [2].
 * iii. **Object-oriented programming language (OOPL).** OOPL is required to implement the Page Object Model (POM), a design pattern that separates tests from the page iteraction logic, facilitating the automation maintainability [2].
 * iv. **Language is officially supported by the test tool.** Languages that are not officially supported by the framework will require hacks to work properly [2].
 
@@ -24,20 +24,20 @@ We created a minimal working example using JS/TS/Playwright and Artem Bondar's c
 ## Findings
 
 ### About Playwright...
-The syntax is indeed different than Selenium, especially when combined with JS/TS (one mind-blowing aspect is that parameters are sent in a dictionary, instead one by one). Overall, this framework is fast and makes automation easy by creating an extra layer of abstraction to interact with web components. Here are some examples:
+The syntax is indeed different than Selenium, especially when combined with JS/TS . Overall, this framework is fast and makes automation easy by creating an extra layer of abstraction to interact with web components. Here are some examples:
 * it provides methods to check/uncheck checkboxes, and you don't need to know in advance the previous status of the component,
 * it provides methods to apply assertions directly to locators instead of web component properties,
 * it let programmers find elements by a generic role using the GetByRole method (for instance, button or label) instead of using XPath,
 * it let programmers navigate backwards in locators paths using "..".
 
-One disadvantag is that creating test fixtures is tricky.
+One disadvantage is that creating test fixtures is tricky.
 
 ### Abouts JS/TS...
 Using JS/TS wasn't that bad, but these languages have a steeper learning curve compared with C#, Java, or Python. Also, there are some annoyances compared with other languages: 
 1. programmers need to type the keyword "await" all the times when they want to access a web component (it's tricky to know where you have to put them),
 2. the use of async and the parenthesis nesting "({})" (sending an empty dictionary of parameters) adds overhead,
 3. programmers have to export functions to make them visible in outside modules,
-4. programmers need to develop knowledge in terms of the ES modules,
+4. ES modules is an obscure topic,
 5. programmers have to use the `export` keyword to use functions outside a file.
 
 Some points in favor are:
@@ -46,7 +46,7 @@ Some points in favor are:
 1. you can define aliases for long commands in the package.json file,
 1. you can use the describe-test syntax (preferred over Gherkin when implementing BDD), and 
 
-Regarding the points mentioned by Zhan; yes, JS/TS still doesn't have an easy-to-understand syntax compared with Python/Ruby (point ii); but in practice you don't notice that TS isn't a fully Object-oriented programming language (point iv). We didn't find problems implementing inheritance, abstraction, and polymorphism (of course, I don't want to enter into purist discussions).
+Regarding the points mentioned by Zhan; yes, JS/TS still doesn't have an easy-to-understand syntax compared with Python/Ruby (point ii); but in practice you don't notice that TS isn't a fully Object-oriented programming language (point iv). We didn't find problems implementing inheritance, abstraction, and polymorphism (we aren't entering into purist discussions for the sake of practicity).
 
 ## Conclusions
 Team members without previous experience in web development can find challenging writting automation in JS/TS, especially manual testers, which can become excluded from opportunities to participate in automation and increase the productivity of the team. On the same direction, choosing Playwright with Python or Ruby could be a better option than JS/TS. In practice, we didn't notice that TS isn't a fully OOP language. We did notice that the JS/TS syntax is over complicated, and this could affect the coding velocity. Playwright seems a good alternative for Selenium, because it adds an extra layer of abstraction that makes interaction with web components and assertions easier. 
